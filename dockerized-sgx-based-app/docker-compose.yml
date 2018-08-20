@@ -1,6 +1,6 @@
 version: '3'
 
 services:
-  app:
+  sgx-based-app:
     build: ./
-    image: app:latest
+    image: sgx-based-app:latest
