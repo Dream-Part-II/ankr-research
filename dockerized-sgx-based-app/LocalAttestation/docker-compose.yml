@@ -4,6 +4,6 @@ services:
   sgx-based-app:
     build: ./
     image: sgx-based-app:latest
-    devices:
-      - /dev/isgx
-      - /dev/mei0
+    #devices:
+    #  - /dev/isgx
+    #  - /dev/mei0
