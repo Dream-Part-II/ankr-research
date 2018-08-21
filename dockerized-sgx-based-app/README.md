@@ -40,7 +40,7 @@
   ```
   $ docker-compose up
   ```
-6. Open a bash shell in teh container:
+6. Open a bash shell in the container:
   ```
   $ docker-compose exec sgx-based-app bash
   ```
