@@ -40,6 +40,22 @@
   ```
   $ docker-compose up
   ```
+6. Open a bash shell in teh container:
+  ```
+  $ docker-compose exec sgx-based-app bash
+  ```
+7. Config the SGX-related environment variables:
+  ```
+  # source /opt/intel/sgxsdk/environment
+  ```
+8. Run the SGX-based app:
+  ```
+  # ./app
+  ```
+9. Exit the container bash shell:
+  ```
+  # exit
+  ```
 6. Remove the Docker container:
   ```
   $ docker-compose down

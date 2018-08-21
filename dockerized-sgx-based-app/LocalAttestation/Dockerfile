@@ -16,6 +16,6 @@ RUN make SGX_MODE=SIM SGX_PRERELEASE=1 SGX_DEBUG=0
 
 #CMD ["echo", "Hello, world!"]
 
-ENTRYPOINT ["echo", "Hello, world"]
+# ENTRYPOINT ["echo", "Hello, world"]
 
 #ENTRYPOINT ["bash -c \"source /opt/intel/sgxsdk/environment./; ./app\""]
