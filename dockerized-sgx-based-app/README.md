@@ -9,12 +9,17 @@
   ```
   $ docker run hello-world
   ```
+1. Install latest release of Docker Compose:
+  ```
+  $ sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+  ```
 2. Install Docker Machine:
   ```
   $ base=https://github.com/docker/machine/releases/download/v0.14.0 &&
     curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
     sudo install /tmp/docker-machine /usr/local/bin/docker-machine
   ```
+  * Allow all to execute `docker-compose` binary
 2. Install VirtualBox:
   ```
   $ sudo apt-get install virtualbox
@@ -27,3 +32,6 @@
       --virtualbox-no-share \
       sgx-based-app
   ```
+4. Build Docker image:
+  ```
+  $ docker-compose build
