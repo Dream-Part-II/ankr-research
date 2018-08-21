@@ -1,4 +1,4 @@
-# Dockerized SGX-based application
+# Dockerized SGX-based application [WiP]
 
 1. Install Docker
   ```
@@ -35,3 +35,12 @@
 4. Build Docker image:
   ```
   $ docker-compose build
+  ```
+5. Launch the Docker container:
+  ```
+  $ docker-compose up
+  ```
+6. Remove the Docker container:
+  ```
+  $ docker-compose down
+  ```
