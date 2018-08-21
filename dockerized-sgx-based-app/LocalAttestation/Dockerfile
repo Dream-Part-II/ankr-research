@@ -20,7 +20,7 @@ RUN make SGX_PRERELEASE=1 SGX_DEBUG=0
 
 #CMD ["echo", "Hello, world!"]
 
-ENTRYPOINT ["bash", "./entrypoint.sh"]
+#ENTRYPOINT ["bash", "./entrypoint.sh"]
 
 # ENTRYPOINT ["echo", "Hello, world"]
 
