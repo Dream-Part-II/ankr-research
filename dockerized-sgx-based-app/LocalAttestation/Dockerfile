@@ -10,7 +10,11 @@ RUN make clean
 
 #RUN echo $SGXSDK
 
-RUN make SGX_MODE=SIM SGX_PRERELEASE=1 SGX_DEBUG=0
+# Build SGX-based app in pre-release, simulation mode
+#RUN make SGX_MODE=SIM SGX_PRERELEASE=1 SGX_DEBUG=0
+
+# Build SGX-based app in pre-release, hardware mode
+RUN make SGX_PRERELEASE=1 SGX_DEBUG=0
 
 #CMD ["./app"]
 
