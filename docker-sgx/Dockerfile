@@ -73,4 +73,4 @@ RUN yes yes | ./sgx_linux_x64_sdk_2.2.100.45311.bin
 # RUN bash -c "source /root/docker-sgx/sdk/sgxsdk/environment; echo $SGX_SDK"
 # RUN bash -c "echo $SGX_SDK"
 
-CMD ["ls", "-lR", "/root/docker-sgx/sdk"]
+CMD ["tail", "-f", "/dev/null"]
