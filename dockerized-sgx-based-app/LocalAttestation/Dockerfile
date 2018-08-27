@@ -1,6 +1,5 @@
 #FROM ubuntu:xenial
-# FROM tozd/sgx:ubuntu-xenial
-FROM bl4ck5un/sgx-docker
+FROM tozd/sgx:ubuntu-xenial
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
@@ -15,4 +14,4 @@ RUN make clean
 RUN make SGX_PRERELEASE=1 SGX_DEBUG=0
 
 # Run the SGX-based application
-ENTRYPOINT ["bash", "./entrypoint.sh"]
+#ENTRYPOINT ["bash", "./entrypoint.sh"]
