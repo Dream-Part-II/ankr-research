@@ -1,8 +1,0 @@
-version: '3'
-
-services:
-  sgx-based-app:
-    build: ./
-    image: sgx-based-app:latest
-  docker-sgx:
-    image: tozd/sgx
