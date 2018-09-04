@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  docker-sgx:
+    build: ./
+    image: docker-sgx:latest
+    devices:
+      - /dev/isgx
+      - /dev/mei0
