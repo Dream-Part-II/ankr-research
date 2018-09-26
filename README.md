@@ -1,4 +1,6 @@
 # Hello World Enclave Project
+Note:  This project was inspired by: https://github.com/digawp/hello-enclave . See that link for further specific information.
+
 I created a "Hello World" style enclave project, in which the untrusted component makes an ECALL to the trusted execution environment. Upon successful completion of this process the following is logged out in the console:
 
 Hello World
