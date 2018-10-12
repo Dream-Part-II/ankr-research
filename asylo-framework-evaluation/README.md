@@ -4,6 +4,14 @@ Asylo (https://asylo.dev/) is a framework for enclave applications developed by 
 
 Asylo aims to streamline development of applications on trusted executions environments (TEEs) such as Intel SGX and ARM TrustZone.
 
+Most importantly, Asylo aims to make enclave application development transparent to the user:
+> Asylo supports an expanding subset of POSIX, which enables running POSIX applications in an enclave with little to no source modification.
+
+from https://asylo.dev/about/overview.html#release-information.
+
+This is basically the goal of other academic projects like Graphene (https://github.com/oscarlab/graphene).
+However, the fact that Google folks are working on Asylo is likely to yield a robust production-grade framework unlike academic projects.
+
 Forum at https://groups.google.com/forum/#!forum/asylo-users
 
 ## Getting started
@@ -81,5 +89,5 @@ docker run -it --rm \
 * Does it support debugging (incl. enclave)? How well is it supported?
 * How flexible is it? Can the developer use low-level SGX APIs for specific operations not yet supported by Asylo such as remote attestation?
 * Are gRPC inside enclaves TLS-terminated?
-  * Secure gRPC model is going to be supported soon according to https://groups.google.com/forum/#!topic/asylo-users/-0LoLbgS3kg but it's not
+  * Secure gRPC model is going to be supported soon according to https://groups.google.com/forum/#!topic/asylo-users/-0LoLbgS3kg but it's not documented yet
 * How to integrate enclave application w/ existing products like BOINC? gRPC-based APIs?
