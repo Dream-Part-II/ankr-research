@@ -2,7 +2,7 @@
 
 Asylo (https://asylo.dev/) is a framework for enclave applications developed by Google folks.
 
-Asylo aims to streamline development of applications on trusted executions environments (TEEs) such as Intel SGX and ARM TrustZone.
+Asylo aims to streamline development of applications on trusted executions environments (TEEs) such as Intel SGX and ARM TrustZone. Asylo already supports SGX hardware mode.
 
 Most importantly, Asylo aims to make enclave application development transparent to the user:
 > Asylo supports an expanding subset of POSIX, which enables running POSIX applications in an enclave with little to no source modification.
@@ -12,7 +12,13 @@ from https://asylo.dev/about/overview.html#release-information.
 This is basically the goal of other academic projects like Graphene (https://github.com/oscarlab/graphene).
 However, the fact that Google folks are working on Asylo is likely to yield a robust production-grade framework unlike academic projects.
 
+The major drawback of Asylo is that it DOES NOT support remote attestation yet. However, support for remote attestation may be provided soon, or we could contribute it to the framework for SGX-targeted enclave applications.
+
 Forum at https://groups.google.com/forum/#!forum/asylo-users
+
+To summarize, we can leverage the Asylo framework to build complex distributed enclave applications such as the Ankr distributed cloud computing network, or a decentralized digital asset trading platform.
+
+We may need to integrate it with components for the missing features such as remote attestation.
 
 ## Getting started
 
@@ -70,6 +76,7 @@ docker run -it --rm \
 * supports SGX hardware release mode since v. 0.3.0 (https://github.com/google/asylo/releases/tag/v0.3.0)
 * enforces security best practices for building and signing production-level enclave applications (https://asylo.dev/docs/guides/sgx_release_enclaves.html)
 * supports Protobuf v. 2 for message formatting and serialization to/from enclave (and across networks) (https://asylo.dev/docs/guides/quickstart.html#enclave-interaction-model)
+  * easy modeling of complex data structures
 * supports gRPC-based client/server model (https://asylo.dev/docs/guides/grpc_server.html)
   * easy development of distributed enclave applications
 * builds and runs application inside Docker container (link `isgx` module and `aesmd` service to run in HW mode) (https://asylo.dev/docs/guides/sgx_release_enclaves.html#step-5-launch-the-release-enclave)
