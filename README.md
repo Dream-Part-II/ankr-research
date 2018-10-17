@@ -1,4 +1,4 @@
-#SGX C++ Code Examples
+# SGX C++ Code Examples
 
 I have created two examples. One is a hello world style program, and the other is a basic stats calculator.
 
