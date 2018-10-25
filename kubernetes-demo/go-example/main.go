@@ -48,8 +48,9 @@ func main() {
 		}
 		fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
 
-		for i := 0; i < len(pods.Items); i++ {
-			fmt.Printf("There are %s pods in the cluster\n", pods.Items[i])
+		for _, pod := range pods.Items {
+			fmt.Println(pod.Name, pod.Status)
+			fmt.Println()
 		}
 
 		// Examples for error handling:
