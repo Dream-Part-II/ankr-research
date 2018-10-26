@@ -1,4 +1,4 @@
-apiVersion: batch/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: batch/v1
 kind: Job
 metadata:
   name: hellonode-job
@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: hello-node
-        image: hello-node:v3
+        image: hello-node:v1
         ports:
         - containerPort: 80
       restartPolicy: Never

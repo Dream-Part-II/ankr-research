@@ -1,0 +1,11 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: demo-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: in-cluster
+        image: in-cluster:v1
+      restartPolicy: Never

@@ -15,6 +15,6 @@ function freeze(time) {
 }
 
 // console.log("freeze 3s");
-freeze(60000);
-console.log("done");
-process.exit(0);
+// freeze(60000);
+// console.log("done");
+// process.exit(0);
