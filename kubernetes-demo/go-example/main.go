@@ -86,8 +86,8 @@ func main() {
 		// fmt.Println("There are %d pods in the cluster\n", len(pods.Items))
 
 		for _, pod := range pods.Items {
-			fmt.Println(pod.Name)
-			// fmt.Println(pod.Name, pod.Status)
+			// fmt.Println(pod.Name)
+			fmt.Println(pod.Name, pod.Status)
 			fmt.Println()
 
 			if strings.HasPrefix(pod.Name, "hellonode-job") {
