@@ -47,6 +47,15 @@ To build a binary file for the go daemon application. Then run the command:
 $ docker build -t in-cluster:v1 .
 ```
 
+```
+Note: Since RBAC is the default authorization setting in the latest kubernetes version, so we may need to bind “cluster-admin” role to “default” user:
+
+$ kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
+
+or below deployment may ran into problem while the pod keep stuck in “CrashLoopBackOff” with the error message while debugging the running pods:
+Error creating job panic: jobs.batch is forbidden: User "system:serviceaccount:default:default" cannot create jobs.batch in the namespace "default" 
+```
+
 Once we have both docker images inside the minikube, we can start running the daemon application. To do so, run the command:
 
 ```
