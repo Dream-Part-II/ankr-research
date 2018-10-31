@@ -1,13 +1,21 @@
 # Programmatically interact with the Kubernetes cluster to run, monitor, and terminate applications 
 
-October 25th, 2018:
+## Objective
 
-Got a basic model of an daemon application monitoring a docker image job. The daemon is a Golang program that is responsible for monitoring the execution state of the docker image through constant queries to the Kubernetes API for the amount of pods and status of pods running inside the Kubernetes cluster. Specifically, every 10 seconds it will print out the number of pods executing inside the node, the names of each of the pods, and the status of each pod (i.e. if it's currently running, when it was initialized, etc.) I essentially hardcoded this application to run a job "hello-node", which is a simple node application which displays the message "Hello world", and monitor the execution status of the pod, printing out the status of the pod in particular, and then terminating the job after 60 seconds has passed. 
+Get a basic model of an daemon application monitoring a docker image job. The daemon is a Golang program that is responsible for deploying a docker image job, monitoring the execution state of the docker image through queries to the Kubernetes API, and terminating the job after completion or a certain amount of time has passed.
+
+## Specifics
+
+This program will print out the number of pods executing inside the node every 10 seconds, the names of each of the pods, and the status of each pod (i.e. if it's currently running, when it was initialized, etc.) I essentially hardcoded this application to run a docker image called "hello-node" (a simple node application which displays the message "Hello world"), and monitor the execution status of the pod, and then terminating the job after 60 seconds has passed. 
 
 For the toy example of the docker image job clients send to the Kubernetes cluster, I utilized the Hello World example here: https://kubernetes.io/docs/tutorials/hello-minikube/
 
+## Requirements
+
 To set up the environment corresponding to this example, we must first follow the instructions listed in the hello-minikube tutorial listed above. Depending on the operating system, the steps may differ slightly, but we need to install the following dependencies:
 Docker, kubernetes-cli, minikube, the go-client for Kubernetes, and one of the vm-drivers: (I used xhyve, but hyper-kit seems to be preferred).
+
+## Setup/Running the application
 
 Afterwards, we can start to set up our environment. First, ensure that Docker is running. Then, to start up the minikube, run the command:
 
@@ -73,6 +81,12 @@ $ kubectl get jobs
 ```
 
 and there should be no jobs listed. With slight modification to the program, we can also delete the pod the job was running in, restart the job on failure exit code, etc. 
+
+## Outcomes
+
+After running this application, I essentially confirmed the ability of the golang Kubernetes to be able to run, monitor, and terminate applications running inside the Minikube cluster, and by extension, a full-fledged Kubernetes cluster. Even though this example may only handle a very simple use case, the Kubernetes API allows one to obtain and modify states of jobs, creating restart policies for jobs in case of failure, and much more functionality that may be required in the future to build a robust daemon that can handle multiple Docker image jobs. As a result, we can continue to preform more research on Kubernetes knowing that a daemon application that programatically manages applications on Kubernetes is feasible.
+
+## Cleanup
 
 To delete the deployment, run the command:
 
