@@ -1,6 +1,9 @@
 # µRaiden Payment Service Example
 This branch contains code that demonstrates the usage of µRaiden for payment services. This will be important for our DCCN that will use blockchain technology for payments.
 
+![alt text](https://microraiden.readthedocs.io/en/latest/_images/uRaidenOverview.png)
+
+
 # Background regarding µRaiden
 
 µRaiden is an off-chain payment channel framework, which is fast and unidirectional. µRaiden allows users to make micropayments, or pay-per-use. This is particulary helpful for our DCCN since users will pay-per-compute. An interactive example of how µRaiden works can be seen in this video: https://www.youtube.com/watch?time_continue=140&v=QZFbHyagVCc
