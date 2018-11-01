@@ -58,8 +58,7 @@ Docker version 17.03.2-ce, build f5ec1e2
 
 Afterwards, we can start to set up our environment.
 First, ensure that Docker is running.
-Then, to start up the minikube, run the command:
-
+Start up Minikube w/:
 ```
 $ minikube start --vm-driver=(name of driver you installed)
 ```
@@ -73,19 +72,25 @@ $ rm -rf ~/.minikube
 
 Then we can create Docker images for the `hello-node` and Kubernetes daemon application.
 First, navigate into the `hellonode` directory inside the `kubernetes-demo` directory.
-Run the command:
+
+Config your Docker client to point at the Docker engine in the Minikube VM w/:
 ```
 $ eval $(minikube docker-env)
 ```
+Do this for each terminal window you're planning to create Docker images for Minikube to ensure that the Docker image created will be inside the minikube cluster.
 
-Do this for each terminal window you're planning to create Docker images for Minikube to ensure that the Docker image created will be inside the minikube cluster, then run:
+Build the application image w/:
 ```
 $ docker build -t hello-node:v1 .
 ```
 
-To check if the Docker image is inside the minikube, run the command:
+Verify that the image was built and is available in the Minikube VM w/:
 ```
 $ minikube ssh docker images
+```
+or
+```
+$ docker image ls
 ```
 
 Afterwards, navigate to the `go-example` directory.
