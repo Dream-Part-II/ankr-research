@@ -49,6 +49,11 @@ $ minikube version
 minikube version: v0.30.0
 ```
 
+```
+$ docker -v
+Docker version 17.03.2-ce, build f5ec1e2
+```
+
 ## Setup/Running the application
 
 Afterwards, we can start to set up our environment.
