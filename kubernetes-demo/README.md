@@ -29,6 +29,26 @@ Depending on the operating system, the steps may differ slightly, one needs to i
 * the go-client for Kubernetes, and
 * one of the vm-drivers (I used `xhyve`, but hyper-kit seems to be preferred)
 
+To get started w/ Minikube, go to https://kubernetes.io/docs/setup/minikube/.
+
+This project has been tested with:
+
+```
+$ uname -a
+Linux Ankr-NUC7i5BNK 4.15.0-36-generic #39~16.04.1-Ubuntu SMP Tue Sep 25 08:59:23 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+```
+$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+```
+
+```
+$ minikube version
+minikube version: v0.30.0
+```
+
 ## Setup/Running the application
 
 Afterwards, we can start to set up our environment.
