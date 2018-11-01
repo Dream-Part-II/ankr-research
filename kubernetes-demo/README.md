@@ -3,6 +3,7 @@
 ## Objective
 
 Develop a daemon application monitoring a Docker image running in a container on Kubernetes.
+
 The daemon is a Golang program that is responsible for:
 * deploying a container from a Docker image;
 * monitoring the execution state of the job through queries to the Kubernetes API; and
@@ -21,18 +22,13 @@ I utilized the Hello World example at https://kubernetes.io/docs/tutorials/hello
 
 ## Requirements
 
-To set up the environment corresponding to this example, follow the instructions listed in the hello-minikube tutorial listed above.
+To set up the environment corresponding to this example, follow the instructions listed in the `hello-minikube` tutorial listed above.
 Depending on the operating system, the steps may differ slightly, one needs to install the following dependencies:
-* Docker,
-* kubernetes-cli,
-* minikube,
-* the go-client for Kubernetes, and
-* one of the vm-drivers (I used `xhyve`, but hyper-kit seems to be preferred)
-
-To get started w/ Minikube, go to https://kubernetes.io/docs/setup/minikube/.
+* Docker CLI: `docker` (https://docs.docker.com/install/overview/)
+* Kubernetes CLI: `kubectl` (https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+* Minikube: `minikube` (https://kubernetes.io/docs/setup/minikube/)
 
 This project has been tested with:
-
 ```
 $ uname -a
 Linux Ankr-NUC7i5BNK 4.15.0-36-generic #39~16.04.1-Ubuntu SMP Tue Sep 25 08:59:23 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
@@ -56,8 +52,6 @@ Docker version 17.03.2-ce, build f5ec1e2
 
 ## Setup/Running the application
 
-Afterwards, we can start to set up our environment.
-First, ensure that Docker is running.
 Start up Minikube w/:
 ```
 $ minikube start --vm-driver=(name of driver you installed)
@@ -71,6 +65,7 @@ $ rm -rf ~/.minikube
 ```
 
 Then we can create Docker images for the `hello-node` and Kubernetes daemon application.
+
 First, navigate into the `hellonode` directory inside the `kubernetes-demo` directory.
 
 Config your Docker client to point at the Docker engine in the Minikube VM w/:
@@ -94,12 +89,8 @@ $ docker image ls
 ```
 
 Afterwards, navigate to the `go-example` directory.
-Build a binary file for the go daemon application w/:
-```
-$ GOOS=linux go build -o ./app .
-```
 
-Then run the command:
+Build the application image w/:
 ```
 $ docker build -t in-cluster:v1 .
 ```
@@ -111,28 +102,30 @@ $ kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --
 ```
 
 or the deployment below may ran into problem while the pod keep stuck in `CrashLoopBackOff` with the following error message while debugging the running pods:
-
 ```
 Error creating job panic: jobs.batch is forbidden: User "system:serviceaccount:default:default" cannot create jobs.batch in the namespace "default"
 ```
 
-Once we have both Docker images inside `minikube`, we can start running the daemon application. To do so, run the command:
-
+Once we have both Docker images inside `minikube`, start the daemon application w/:
 ```
 $ kubectl run --rm -i demo --image=in-cluster:v1 --image-pull-policy=Never
 ```
 
-This will create a deployment for the go-application, which essentially is a persistent application, which will create a job for the hellonode program. We can run the command:
+This will create a deployment for the Go daemon application, which essentially is a persistent application, which will create a job for the `hello-node` program.
+
+List the jobs w/:
 ```
 $ kubectl get jobs
 ```
+before a minute passes and we can confirm that a job is running.
 
-before a minute passes and we can confirm that a job is running. After a minute passes, we can run the command again
+After a minute passes, we can run the command again
 ```
 $ kubectl get jobs
 ```
+and there should be no jobs listed.
 
-and there should be no jobs listed. With slight modification to the program, we can also delete the pod the job was running in, restart the job on failure exit code, etc.
+With slight modification to the program, we can also delete the pod the job was running in, restart the job on failure exit code, etc.
 
 ## Outcomes
 
@@ -140,23 +133,23 @@ After running this application, I essentially confirmed the ability of the golan
 
 Even though this example may only handle a very simple use case, the Kubernetes API allows one to obtain and modify states of jobs, creating restart policies for jobs in case of failure, and much more functionality that may be required in the future to build a robust daemon that can handle multiple Docker image jobs.
 
-As a result, we can continue to preform more research on Kubernetes knowing that a daemon application that programmatically manages applications on Kubernetes is feasible.
+As a result, we can continue to perform more research on Kubernetes knowing that a daemon application that programmatically manages applications on Kubernetes is feasible.
 
 ## Cleanup
 
-To delete the deployment, run the command:
+Delete the deployment w/:
 
 ```
 $ kubectl delete deployment demo
 ```
 
-To remove a particular image, run the command:
+Remove a particular image w/:
 
 ```
 $ docker rmi (name_of_image):v1 -f
 ```
 
-To shut down Minikube and delete the local vm, run:
+Shut down Minikube and delete the local VM w/:
 
 ```
 $ minikube stop
