@@ -1,6 +1,6 @@
 # SGX C++ Code Examples
 
-I have created two examples. One is a hello world style program, and the other is a basic stats calculator.
+I have created two examples. One is a hello world style program, and the other is a basic stats calculator. In addition, these programs can be run in hardware mode.
 
 Note:  This project was inspired by: https://github.com/digawp/hello-enclave . See that link for further specific information.
 
