@@ -10,7 +10,7 @@ receiver = '0xaaaaaaaaaaaaaaaaaaaaaaa'
 privkey = '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' # Some sender private key
 
 client = Client(privkey)
-# Open a suitable channel for communication and deposit 10 TKN
+# Open a suitable channel for communication and deposit 1 TKN
 channel = client.get_suitable_channel(receiver, 1)
 channel.create_transfer(1)
 
