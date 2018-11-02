@@ -6,8 +6,8 @@ In this file, we construct a channel between two parties, a sender and a recevie
 from microraiden import Client
 import os
 
-receiver = '0x5cBF12aA30E557032e9D0992D5d3e9e02a2852DD'
-privkey = '0x2D97329F760848A548A95B8A08F780932A02D43ECEC40138A70F92FB14847887' # Some sender private key
+receiver = '0xaaaaaaaaaaaaaaaaaaaaaaa'
+privkey = '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' # Some sender private key
 
 client = Client(privkey)
 # Open a suitable channel for communication and deposit 10 TKN
