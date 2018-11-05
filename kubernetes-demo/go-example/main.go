@@ -20,9 +20,6 @@ package main
 import (
 	"fmt"
 	"time"
-	// "os"
-
-	// "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
@@ -46,8 +43,10 @@ func main() {
 		panic(err.Error())
 	}
 
+	// create jobClient
 	jobsClient := clientset.BatchV1().Jobs("default")
 
+	// create spec for hello-node job 
 	job := &batchv1.Job{
 	    ObjectMeta: metav1.ObjectMeta{
 	        Name: "hellonode-job",
@@ -67,6 +66,7 @@ func main() {
 	    },
 	}
 
+	// create job
 	newJob, err := jobsClient.Create(job)
 	if err != nil {
 		fmt.Printf("Error creating job\n")
@@ -74,8 +74,10 @@ func main() {
 	}
 	fmt.Println("New job name: ", newJob.Name)
 
+	// monitor amount of time daemon has been monitoring
 	iterations := 0
 
+	// monitor status of pods running inside cluster
 	for {
 		fmt.Println("Iteration %d\n", iterations)
 		pods, err := clientset.CoreV1().Pods("").List(metav1.ListOptions{})
@@ -83,17 +85,17 @@ func main() {
 			fmt.Printf("Error obtaining pods.\n")
 			panic(err.Error())
 		}
-		// fmt.Println("There are %d pods in the cluster\n", len(pods.Items))
 
+		// check each pod in cluster
 		for _, pod := range pods.Items {
-			// fmt.Println(pod.Name)
 			fmt.Println(pod.Name, pod.Status)
 			fmt.Println()
 
+			// check if pod is running the hello-node job 
 			if strings.HasPrefix(pod.Name, "hellonode-job") {
 				fmt.Println("Found job!")
-				// fmt.Println(pod.Status.Phase)
 
+				// delete hello-node job after ~60 seconds
 				if iterations == 6 {
 					fmt.Println("About to delete job.")
 					deletePolicy := metav1.DeletePropagationForeground
@@ -106,28 +108,13 @@ func main() {
 					fmt.Println("Deleted job.")
 				}
 
+				// check if pod is completed 
 				if pod.Status.Phase == "Succeeded" {
 					fmt.Println("Job completed!")
-					// os.Exit(0)
 				}
 				fmt.Println()
 			}
 		}
-
-		// Examples for error handling:
-		// - Use helper functions like e.g. errors.IsNotFound()
-		// - And/or cast to StatusError and use its properties like e.g. ErrStatus.Message
-		// _, err = clientset.CoreV1().Pods("default").Get("hello-node", metav1.GetOptions{})
-		// if errors.IsNotFound(err) {
-		// 	fmt.Printf("Pod not found\n")
-		// } else if statusError, isStatus := err.(*errors.StatusError); isStatus {
-		// 	fmt.Printf("Error getting pod %v\n", statusError.ErrStatus.Message)
-		// } else if err != nil {
-		// 	fmt.Printf("Yikes, panic 2\n")
-		// 	panic(err.Error())
-		// } else {
-		// 	fmt.Printf("Found pod\n")
-		// }
 
 		time.Sleep(10 * time.Second)
 		iterations += 1
