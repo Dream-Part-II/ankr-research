@@ -9,4 +9,3 @@ spec:
       - name: in-cluster
         image: in-cluster:v1
       restartPolicy: Never
-      
