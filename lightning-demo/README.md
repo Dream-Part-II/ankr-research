@@ -1,1 +1,9 @@
 # Investigate Lightning implementations for Payments
+
+## Purpose of the Lightning Protocol
+
+Lightning is essentially a protocol that lies above the Bitcoin blockchain layer that enables scability of the blockchain through the creation of off-chain transaction channels that users can update at their discretion. Without the need to broadcast a call to the blockchain each time parties want to make any transaction to another party, lightning significantly cuts costs typically associated with payments, allowing for a new type of transaction called micropayments. Additionally, because these payments are made off-chain, payments are instant. 
+
+These efforts to implement the Lightning protocol is an attempt to make the bitcoin blockchain scalable. Because historically, any transaction, no matter how big or small, i.e. purchasing a pizza using Bitcoin during its early days as opposed to completing a large scale enterprise agreement to complete a cloud computing job, would have to go through the block confirmation process and then get mined on the blockchain. Due to this, naturally the Bitcoin blockchain has grown bloated, and costs to maintain and add to the blockchain is exponentially growing. An example of how several small scale transaction can severly bloat a blockchain can be seen in CryptoKitties & Satoshi Dice. CryptoKitties is an online game that utilizes the Ethereum blockchain for a decentralized database. Kitties can be traded, bred, or bought in which a smart contract hosted on the Ethereum blockchain would facilitate such transactions. However, during the "CryptoKitties" hype, multiple users were flooding the Ethereum blockchain with such microtransactions, such as buy one kitty, bred with another kitty, etc. More information can be found here: ```https://qz.com/1145833/cryptokitties-is-causing-ethereum-network-congestion/```
+
+For Ankr specifically, we want to leverage the  
