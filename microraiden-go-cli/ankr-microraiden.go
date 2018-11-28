@@ -7,10 +7,11 @@ import (
 	"fmt"
 	"os"
 	"context"
+	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"math/big"
 	"log"
 	"crypto/ecdsa"
-    "github.com/ethereum/go-ethereum/common/hexutil"
+	"crypto/x509"
     "github.com/ethereum/go-ethereum/common"
     "github.com/ethereum/go-ethereum/accounts/abi/bind"
     "github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
@@ -28,26 +29,30 @@ func createAccount(accountName string) {
 	}
 	// Generate Key Pair, Address, and Private Key
 	privateKey, err := crypto.GenerateKey()
-    	
-	if err != nil {
-        	log.Fatal(err)
-    	}
-	privateKeyBytes := crypto.FromECDSA(privateKey)
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	
-    	if !ok {
-		log.Fatal("error casting public key to ECDSA")
-    	}
-	
-	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
-	address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    privateKeyBytes, err := x509.MarshalECPrivateKey(privateKey)
+    if err != nil {
+    	log.Fatal(err)
+    }
+    fmt.Println(privateKeyBytes)
+    publicKey := privateKey.Public()
+    publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+    if !ok {
+        log.Fatal("error casting public key to ECDSA")
+    }
+
+    address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
 
 	// Write info to files
 	file, err := os.Create(accountName + ".txt")
 	file.WriteString(address + "\n")
-	file.WriteString(hexutil.Encode(publicKeyBytes) + "\n")
-	file.WriteString(hexutil.Encode(privateKeyBytes))
+	
+	// Write Private Key Bytes to files
+	privateKeyFile, err := os.Create(accountName + "-private-key.txt") 
+	privateKeyFile.Write(privateKeyBytes)
 }
 
 func getAddressFromAccountName(fileNames string) (string, string) {
@@ -86,52 +91,45 @@ func getAddressFromAccountName(fileNames string) (string, string) {
 	return address1, address2
 }
 
-func getPrivateKeyFromAccountName(fileNames string) (string, string) {
+func createKs() {
+    ks := keystore.NewKeyStore("./tmp", keystore.StandardScryptN, keystore.StandardScryptP)
+    password := "secret"
+    account, err := ks.NewAccount(password)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    fmt.Println(account.Address.Hex())
+}
+
+func getPrivateKeyFromAccountName(fileNames string) ([]byte) {
 	files := strings.Split(fileNames, " ")
-	user1, user2 := files[0], files[1]
-	privateKey1, privateKey2 := "0x0", "0x0"
-	counter := 0
+	user1, _ := files[0], files[1]
 
-	if _, err := os.Stat(user1 + ".txt"); !os.IsNotExist(err) {
-		file, err := os.Open(user1 + ".txt")
-		if err != nil {
-			log.Fatal(err)
-    	}
-    	defer file.Close()
+	file, err := os.Open(user1 + "-private-key.txt")
+	if err != nil {
+  		fmt.Println(err)
+  		os.Exit(1)
+  	}
+	
+	defer file.Close()
 
-    	scanner := bufio.NewScanner(file)
-    	for scanner.Scan() {
-    		if counter == 1 {
-    			privateKey1 = scanner.Text()
-    		}
-    		scanner.Text()
-    		counter = counter + 1
-    	}
-
+	fileinfo, err := file.Stat()
+	
+	if err != nil {
+  		fmt.Println(err)
+  		os.Exit(1)
 	}
 
-	counter = 0
+	filesize := fileinfo.Size()
+	buffer := make([]byte, filesize)
 
-	if _, err := os.Stat(user2 + ".txt"); !os.IsNotExist(err) {
-		file, err := os.Open(user2 + ".txt")
-		if err != nil {
-			log.Fatal(err)
-    	}
-    	defer file.Close()
-
-    	scanner := bufio.NewScanner(file)
-    	for scanner.Scan() {
-    		if counter == 1 {
-    			privateKey2 = scanner.Text()
-    		}
-    		scanner.Text()
-    		counter = counter + 1
-    	}
-
+	_, err = file.Read(buffer)
+	if err != nil {
+  		fmt.Println(err)
+  		os.Exit(1)
 	}
-
-	return privateKey1, privateKey2
-
+	return buffer
 }
 
 func main() {
@@ -196,8 +194,9 @@ func main() {
 	case "createChannel":
 		createChannelCommand.Parse(os.Args[2:])
 		address1, address2 := getAddressFromAccountName(*createChannelUsersPtr)
-		privateKey1, privateKey2 := getPrivateKeyFromAccountName(*createChannelUsersPtr)
+		privateKeyBytes1 := getPrivateKeyFromAccountName(*createChannelUsersPtr)
 		nonce, err = client.PendingNonceAt(context.Background(), common.HexToAddress(address1))
+		
 		if err != nil {
     		log.Fatal(err)
     	}
@@ -208,14 +207,18 @@ func main() {
     		log.Fatal(err)
     	}
 
-		auth = bind.NewKeyedTransactor(privateKey1)
-		auth.Nonce = big.NewInt(int64(nonce))
-		auth.Value = big.NewInt(0) // in wei
-		auth.GasLimit = uint64(1000000000) // in units
-		auth.GasPrice = gasPrice
-		_ , _ = address1, address2
-		fmt.Println(privateKey1)
-		fmt.Println(privateKey2)
-		instance.CreateChannel(auth, common.HexToAddress(address1), big.NewInt(10))
+    	privKey1, err := x509.ParseECPrivateKey(privateKeyBytes1)
+    	if err != nil {
+    		log.Fatal(err)
+    	}
+    	_, _ = address1, address2
+    	_ = privKey1
+		auth = bind.NewKeyedTransactor(privKey1)
+		_ = auth
+		// auth.Nonce = big.NewInt(int64(nonce))
+		// auth.Value = big.NewInt(0) // in wei
+		// auth.GasLimit = uint64(1000000000) // in units
+		// auth.GasPrice = gasPrice
+		// instance.CreateChannel(auth, common.HexToAddress(address2), big.NewInt(10))
 	}
 }
