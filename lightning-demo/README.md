@@ -39,5 +39,7 @@ As lightning is a topic of interest right now, there are multiple articles/tutor
 
 The tutorial in interest that reflects our goals for Ankr is linked here: (https://dev.lightning.community/tutorial/01-lncli/index.html). It states how to start three nodes Alice, Bob, and Charlie, have them talk to each other, set up channels, route payments between one another, and close a channel.
 
+Another implementation is packaging both BTCD and LND together in a docker-compose file, and then having them interact together through the use of docker containers. The relevent tutorial can be found here: https://dev.lightning.community/guides/docker/. This guide also mentions how to test the docker implementation on testnet as well, and is an easy way for us to test any payment related solution. One thing to note is the environment variable isn't recognized when trying to test utilizing testnet, so I had to hardcode the shell scripts that start the daemons to start utilizing the --testnet flag.
+
 Tutorial to run node on mainnet: (https://gist.github.com/bretton/0b22a0503a9eba09df86a23f3d625c13)
 
