@@ -10,14 +10,14 @@ import (
 	"math/big"
 	"log"
 	"crypto/ecdsa"
-    	"github.com/ethereum/go-ethereum/common/hexutil"
-    	"github.com/ethereum/go-ethereum/common"
-    	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-    	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
-    	"github.com/ethereum/go-ethereum/ethclient"
-    	"github.com/ethereum/go-ethereum/crypto"
-    	"github.com/ethereum/go-ethereum/core"
-    	microraiden "./contracts"
+    "github.com/ethereum/go-ethereum/common/hexutil"
+    "github.com/ethereum/go-ethereum/common"
+    "github.com/ethereum/go-ethereum/accounts/abi/bind"
+    "github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
+    "github.com/ethereum/go-ethereum/ethclient"
+    "github.com/ethereum/go-ethereum/crypto"
+    "github.com/ethereum/go-ethereum/core"
+    microraiden "./contracts"
 )
 
 /* Creates account and wallet for user ACCOUNTNAME. */
@@ -59,29 +59,28 @@ func getAddressFromAccountName(fileNames string) (string, string) {
 		file, err := os.Open(user1 + ".txt")
 		if err != nil {
 			log.Fatal(err)
-    		}
-    		
-		defer file.Close()
+    	}
+    	defer file.Close()
 
-    		scanner := bufio.NewScanner(file)
-    		for scanner.Scan() {
-    			address1 = scanner.Text()
-    			break
-    		}
+    	scanner := bufio.NewScanner(file)
+    	for scanner.Scan() {
+    		address1 = scanner.Text()
+    		break
+    	}
 	}
 
 	if _, err := os.Stat(user2 + ".txt"); !os.IsNotExist(err) {
 		file, err := os.Open(user2 + ".txt")
 		if err != nil {
 			log.Fatal(err)
-    		}
-    		defer file.Close()
+    	}
+    	defer file.Close()
 
-    		scanner := bufio.NewScanner(file)
-    		for scanner.Scan() {
-    			address2 = scanner.Text()
-    			break
-    		}
+    	scanner := bufio.NewScanner(file)
+    	for scanner.Scan() {
+    		address2 = scanner.Text()
+    		break
+    	}
 	}
 
 	return address1, address2
@@ -97,18 +96,18 @@ func getPrivateKeyFromAccountName(fileNames string) (string, string) {
 		file, err := os.Open(user1 + ".txt")
 		if err != nil {
 			log.Fatal(err)
-    		}
-    		
-		defer file.Close()
+    	}
+    	defer file.Close()
 
-    		scanner := bufio.NewScanner(file)
-    		for scanner.Scan() {
-    			if counter == 1 {
-    				privateKey1 = scanner.Text()
-    			}
-    			scanner.Text()
-    			counter = counter + 1
+    	scanner := bufio.NewScanner(file)
+    	for scanner.Scan() {
+    		if counter == 1 {
+    			privateKey1 = scanner.Text()
     		}
+    		scanner.Text()
+    		counter = counter + 1
+    	}
+
 	}
 
 	counter = 0
@@ -117,20 +116,22 @@ func getPrivateKeyFromAccountName(fileNames string) (string, string) {
 		file, err := os.Open(user2 + ".txt")
 		if err != nil {
 			log.Fatal(err)
-    		}
-    		defer file.Close()
+    	}
+    	defer file.Close()
 
-    		scanner := bufio.NewScanner(file)
-    		for scanner.Scan() {
-    			if counter == 1 {
-    				privateKey2 = scanner.Text()
-    			}
-    			scanner.Text()
-    			counter = counter + 1
+    	scanner := bufio.NewScanner(file)
+    	for scanner.Scan() {
+    		if counter == 1 {
+    			privateKey2 = scanner.Text()
     		}
+    		scanner.Text()
+    		counter = counter + 1
+    	}
+
 	}
 
 	return privateKey1, privateKey2
+
 }
 
 func main() {
@@ -142,27 +143,27 @@ func main() {
 
 	// Create private key for loading Microraiden Smart Contract
 	privateKey, err := crypto.GenerateKey()
-	if err != nil {
-		log.Fatal(err)
-	}
+    if err != nil {
+        log.Fatal(err)
+    }
 
-    	// Address of Microraiden Smart Contract
-    	smartContractAddress := common.HexToAddress("0xed94e711e9de1ff1e7dd34c39f0d4338a6a6ef92")
-    	nonce, err := client.PendingNonceAt(context.Background(), smartContractAddress)
-    	if err != nil {
-    		log.Fatal(err)
-   	}
+    // Address of Microraiden Smart Contract
+    smartContractAddress := common.HexToAddress("0xed94e711e9de1ff1e7dd34c39f0d4338a6a6ef92")
+    nonce, err := client.PendingNonceAt(context.Background(), smartContractAddress)
+    if err != nil {
+    	log.Fatal(err)
+    }
 
    	gasPrice, err := client.SuggestGasPrice(context.Background())
     
-    	if err != nil {
-    		log.Fatal(err)
-    	}
+    if err != nil {
+    	log.Fatal(err)
+    }
 	auth := bind.NewKeyedTransactor(privateKey)
-    	auth.Nonce = big.NewInt(int64(nonce))
-    	auth.Value = big.NewInt(0) // in wei
-    	auth.GasLimit = uint64(1000000000) // in units
-    	auth.GasPrice = gasPrice
+    auth.Nonce = big.NewInt(int64(nonce))
+    auth.Value = big.NewInt(0) // in wei
+    auth.GasLimit = uint64(1000000000) // in units
+    auth.GasPrice = gasPrice
 
 	instance, err := microraiden.NewMicroraiden(smartContractAddress, backends.NewSimulatedBackend(core.GenesisAlloc{auth.From: {Balance: big.NewInt(10000000000)}}, 10000000))
 	if err != nil {
@@ -184,6 +185,10 @@ func main() {
 	createChannelCommand := flag.NewFlagSet("createChannel", flag.ExitOnError)
 	createChannelUsersPtr := createChannelCommand.String("users", "", "Name of users. (Required)")
 
+	//Create channel
+	createChannelCommand := flag.NewFlagSet("createChannel", flag.ExitOnError)
+	createChannelUsersPtr := createChannelCommand.String("users", "", "Name of users. (Required)")
+
 	switch(os.Args[1]) {
 	case "createAccount":
 		createAccountCommand.Parse(os.Args[2:])
@@ -194,12 +199,15 @@ func main() {
 		privateKey1, privateKey2 := getPrivateKeyFromAccountName(*createChannelUsersPtr)
 		nonce, err = client.PendingNonceAt(context.Background(), common.HexToAddress(address1))
 		if err != nil {
-    			log.Fatal(err)
-    		}
-		gasPrice, err = client.SuggestGasPrice(context.Background())
-		if err != nil {
-    			log.Fatal(err)
-		}
+    		log.Fatal(err)
+    	}
+
+   		gasPrice, err = client.SuggestGasPrice(context.Background())
+    
+    	if err != nil {
+    		log.Fatal(err)
+    	}
+
 		auth = bind.NewKeyedTransactor(privateKey1)
 		auth.Nonce = big.NewInt(int64(nonce))
 		auth.Value = big.NewInt(0) // in wei
