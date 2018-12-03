@@ -103,6 +103,11 @@ sudo docker-compose down -v
 ```
 sudo docker-compose up -d
 ```
+3.5) Open browser and type: https://localhost, will display the Harbor Admin Interface. Using below info to login:
+```
+username: admin
+pw: Harbor12345
+```
 
 ### Issues when try to connect to Harbor Interface
 After setting up HTTPS for Harbor, met two issues when try to display Harbor Interface.
@@ -113,3 +118,13 @@ I use https://localhost to access Harbor Interface. If I use "https://192.168.1.
 1. Firefox browser still shows the warning regarding Certificate Authority (CA) unknown for security reason even though we signed certificates by self-signed CA and deploy the CA to the place mentioned above. It is because self-signed CA essentially is not a trusted third-party CA. You can import the CA to the browser on your own to solve the warning.
 2. On a machine with Docker daemon, make sure the option "-insecure-registry" for 192.168.1.10 does not present.
 
+## Log into Docker
+```
+sudo docker login 192.168.1.10
+username: admin
+password: Harbor12345
+```
+When try to login, get the error as below:
+```
+Error response from daemon: Get https://192.168.1.10/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+```
