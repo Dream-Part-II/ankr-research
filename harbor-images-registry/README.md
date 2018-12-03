@@ -15,6 +15,12 @@ More Info about how to install Harbor please check here: https://github.com/goha
 1. Download online installer v1.6.2
 2. Unzip installer: tar xvf harbor-online-installer-v1.6.2.tgz
 
+## Configuring Harbor with HTTP Access and Install Harbor
+By default Harbor use HTTP to server registry requests. After unzip installer, there is a harbor folder under the same directory. 
+1. Navigate to harbor folder. `cd harbor`
+2. Configurate harbor.cfg. `vim harbor.cfg`
+3. Here only config `hostname` parameter. `hostname = 192.168.1.10`
+4. Install Harbor. `sudo ./install.sh`  
 
  
 
