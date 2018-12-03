@@ -104,3 +104,12 @@ sudo docker-compose down -v
 sudo docker-compose up -d
 ```
 
+### Issues when try to connect to Harbor Interface
+After setting up HTTPS for Harbor, met two issues when try to display Harbor Interface.
+```
+Notes:
+I use https://localhost to access Harbor Interface. If I use "https://192.168.1.10", couldn't get the access. But I use "https://localhost", Nginx will transfer to "https://192.168.1.10"
+```
+1. Firefox browser still shows the warning regarding Certificate Authority (CA) unknown for security reason even though we signed certificates by self-signed CA and deploy the CA to the place mentioned above. It is because self-signed CA essentially is not a trusted third-party CA. You can import the CA to the browser on your own to solve the warning.
+2. On a machine with Docker daemon, make sure the option "-insecure-registry" for 192.168.1.10 does not present.
+
