@@ -22,5 +22,42 @@ By default Harbor use HTTP to server registry requests. After unzip installer, t
 3. Here only config `hostname` parameter. `hostname = 192.168.1.10`
 4. Install Harbor. `sudo ./install.sh`  
 
- 
+## Configuring Harbor with HTTPS Access
+Harbor use HTTP by default to serve requests, but we set up HTTPS here for security. Harbor has an Nginx instance as a reverse proxy for all services, we can use the prepare script to configure Nginx to enable https.
+We are in a test environment, so we choose to use a self-signed certificate here. The followings will show how to create our own CA, and use the CA to sign a server certificate and a client certificate
+
+### Getting Certificate Authority
+1. `sudo openssl genrsa -out ca.key 4096` Will generate RSA private key
+2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key ca.key -out ca.crt` You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP.
+### Getting Server Certificate
+1. `sudo openssl genrsa -out 192.168.1.10.key 4096` Create our own Private Key
+2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key 192.168.1.10.key -out 192.168.1.10.crt` Generate a certificate signing request. You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP.
+### Generate the certificate of your registry host:
+1. Whether you're using FQDN like **yourdomain.com** or **IP** to connect your registry host, run the command below to generate the certificate of your registry host which comply with Subject Alternative Name and x509 v3 extension requirement: <br/>
+
+v3.ext
+```
+cat > v3.ext <<-EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth 
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.3=192.168.1.10
+EOFcat > v3.ext <<-EOF
+authorityKeyIdentifier=keyid, issuer
+basic
+``` 
+
+2. 
+```
+openssl x509 -req -sha512 -days 3650 \
+    -extfile v3.ext \
+    -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -in 192.168.1.10.csr \
+    -out 192.168.1.10.crt
+``` 
+
 
