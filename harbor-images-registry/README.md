@@ -59,5 +59,48 @@ openssl x509 -req -sha512 -days 3650 \
     -in 192.168.1.10.csr \
     -out 192.168.1.10.crt
 ``` 
-
+### Modify Configuration for Harbor
+**1). Configure Server Certificate and Key for Harbor** <br/>
+After obtaining the **192.168.1.10.crt** and **192.168.1.10.key** files, copy them into directory such as /data/cert/: <br/>
+```
+sudo mkdir /data/cert/
+sudo cp 192.168.1.10.crt /data/cert/
+sudo cp 192.168.1.10.key /data/cert/
+```
+**2). Configure Server Certificate, Key and CA for Docker** <br/>
+2.1) The Docker daemon interprets `.crt` files as CA certificates and `.cert` files as client certificates. Convert server `192.168.1.10.crt` to `192.168.1.10.cert`:
+```
+sudo openssl x509 -inform PEM -in 192.168.1.10.crt -out 192.168.1.10.cert
+```
+2.2) Deploy `192.168.1.10.cert`, `192.168.1.10.key`, and `ca.crt` for Docker:
+```
+sudo mkdir /etc/docker/certs.d/192.168.1.10/
+sudo cp 192.168.1.10.cert /etc/docker/certs.d/192.168.1.10/
+sudo cp 192.168.1.10.key /etc/docker/certs.d/yourdomain.com/
+sudo cp ca.crt /etc/docker/certs.d/192.168.1.10/
+```
+**3). Configure Harbor** <br/>
+3.1) Modify `harbor.cfg`, update the `hostname` (if necessary) and the protocol; also update the attributes `ssl_cert` and `ssl_cert_key`:
+```
+#set hostname
+hostname = 192.168.1.10
+#set ui_url_protocol
+ui_url_protocol = https 
+......
+#The path of cert and key files for nginx, they are applied only the protocol is set to https 
+ssl_cert = /data/cert/192.168.1.10.crt
+ssl_cert_key = /data/cert/192.168.1.10.key
+```
+3.2) Generate configuration files for Harbor:
+```
+sudo ./prepare
+```
+3.3) Since my Harbor is running, should stop and remove the existing instance.
+```
+sudo docker-compose down -v
+```
+3.4) Finally, restart Harbor:
+```
+sudo docker-compose up -d
+```
 
