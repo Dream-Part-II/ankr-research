@@ -165,7 +165,7 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 ### 1. Create 'test' private project
 After login to Harbor Admin Interface from https://192.168.0.107, create a new `private` project named `test`. <br/>
-![Add new project](/png/2 Add test.png)
+![Add new project](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/2%20Add%20test.png)
 
 ### 2. Pull Image from Docker
 You could create a Docker Image by Dockerfile. Instead I pulled a image from Docker.
@@ -180,7 +180,7 @@ Before we push the images to Harbor Registry, we should tag the images by follow
 docker tag busybox:latest 192.168.0.107/test/busybox:latest
 ```
 If you use `docker images` to check now, you could see both `busybox` and `192.168.0.107/test/busybox`. <br/>
-![Tagged Image](/png/3 Tag Image.png)
+![Tagged Image](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/3%20Tag%20Image.png)
 
 ### 4. Push Tagged Image to Harbor Registry
 Finally, we could push the tagged image to Harbor Registry
@@ -188,7 +188,7 @@ Finally, we could push the tagged image to Harbor Registry
 docker push 192.168.0.107/test/busybox:latest
 ```
 On Harbor Admin Interface, `test/busybox` image was added to `test` project. <br/>
-![Image Added](/png/4 Add Image.png)
+![Image Added](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/4%20Add%20Image.png)
 
 ### 5. Pull Image to the same machine
 Now we have `test/busybox image` stored in our Harbor private Registry, and it could be easily pulled to the same machine.<br/>
