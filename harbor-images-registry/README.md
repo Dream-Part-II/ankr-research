@@ -141,7 +141,7 @@ docker-compose up -d
 username: admin
 pw: Harbor12345
 ```
-[png/1 login Harbor.png]
+![Log into Harbor](/png/1 login Harbor.png)
 ### Issues when try to connect to Harbor Interface
 After setting up HTTPS for Harbor, met a issue when try to display Harbor Interface.
 
@@ -164,7 +164,8 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 ## Push & Pull Images from Harbor
 
 ### 1. Create 'test' private project
-After login to Harbor Admin Interface from https://192.168.0.107, create a new `private` project named `test`. [png/2 Add test.png]
+After login to Harbor Admin Interface from https://192.168.0.107, create a new `private` project named `test`. <br/>
+![Add new project](/png/2 Add test.png)
 
 ### 2. Pull Image from Docker
 You could create a Docker Image by Dockerfile. Instead I pulled a image from Docker.
@@ -178,14 +179,16 @@ Before we push the images to Harbor Registry, we should tag the images by follow
 ```
 docker tag busybox:latest 192.168.0.107/test/busybox:latest
 ```
-If you use `docker images` to check now, you could see both `busybox` and `192.168.0.107/test/busybox`. [png/3 Tag Image.png]
+If you use `docker images` to check now, you could see both `busybox` and `192.168.0.107/test/busybox`. <br/>
+![Tagged Image](/png/3 Tag Image.png)
 
 ### 4. Push Tagged Image to Harbor Registry
 Finally, we could push the tagged image to Harbor Registry
 ```
 docker push 192.168.0.107/test/busybox:latest
 ```
-On Harbor Admin Interface, `test/busybox` image was added to `test` project. [png/4 Add Image.png]
+On Harbor Admin Interface, `test/busybox` image was added to `test` project. <br/>
+![Image Added](/png/4 Add Image.png)
 
 ### 5. Pull Image to the same machine
 Now we have `test/busybox image` stored in our Harbor private Registry, and it could be easily pulled to the same machine.<br/>
