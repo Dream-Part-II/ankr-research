@@ -4,32 +4,38 @@ Docker has its own image registry service, which is Docker Hub. But for private 
 1. Store private and confidential images
 2. Classify images by stage tags, for example, develop, staging, or production
 ## Prerequisites for the target host
-Dual boot Ubuntu 18.01 on Windows 10 system and use Ubuntu as my OS. Installed:
+This experiment was on Ubuntu 18.04. Installed:
 1. Docker version 18.09.0
-2. Docker-compose version 1.19.0
-3. Python3: (symlink python3 path to /usr/bin/python)
+2. Docker-compose version 1.23.2
+3. If you have error when try to install Harbor because _/usr/bin/pyton not found_, this error could be solved by add symlink: `Python3: (symlink python3 path to /usr/bin/python)`
 
 More Info about how to install Harbor please check here: https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md
 
 ## Download Harbor online/offline installer
 1. Download online installer v1.6.2
-2. Unzip installer: tar xvf harbor-online-installer-v1.6.2.tgz
-
-## Configuring Harbor with HTTP Access and Install Harbor
-By default Harbor use HTTP to server registry requests. After unzip installer, there is a harbor folder under the same directory. 
-1. Navigate to harbor folder. `cd harbor`
-2. Configurate harbor.cfg. `vim harbor.cfg`
-3. Here only config `hostname` parameter. `hostname = 192.168.1.10`
-4. Install Harbor. `sudo ./install.sh`  
+2. Unzip installer: 
+```
+tar xvf harbor-online-installer-v1.6.2.tgz
+```  
 
 ## Configuring Harbor with HTTPS Access
 Harbor use HTTP by default to serve requests, but we set up HTTPS here for security. Harbor has an Nginx instance as a reverse proxy for all services, we can use the prepare script to configure Nginx to enable https.
 We are in a test environment, so we choose to use a self-signed certificate here. The followings will show how to create our own CA, and use the CA to sign a server certificate and a client certificate
 
 ### Getting Certificate Authority
-1. `sudo openssl genrsa -out ca.key 4096` Will generate RSA private key
-2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key ca.key -out ca.crt` You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
-After this, you will have `ca.crt` and `ca.key`.
+1. Will generate RSA private key
+```
+openssl genrsa -out ca.key 4096
+``` 
+2. 
+```
+openssl req -x509 -new -nodes -sha512 -days 365 \
+-key ca.key 
+-out ca.crt
+``` 
+You are about to be asked to enter info that will be incorporated into your certificate request.<br/> **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
+After this, you will have `ca.crt` and `ca.key` files.
+
 ### Getting Server Certificate
 1. `sudo openssl genrsa -out 192.168.1.10.key 4096` Create our own Private Key
 2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key 192.168.1.10.key -out 192.168.1.10.csr` Generate a certificate signing request. You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
