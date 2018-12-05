@@ -141,7 +141,7 @@ docker-compose up -d
 username: admin
 pw: Harbor12345
 ```
-![Log into Harbor](/png/1 login Harbor.png)
+![Log into Harbor](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/1%20login%20Harbor.png)
 ### Issues when try to connect to Harbor Interface
 After setting up HTTPS for Harbor, met a issue when try to display Harbor Interface.
 
