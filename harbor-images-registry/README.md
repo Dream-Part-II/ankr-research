@@ -28,10 +28,12 @@ We are in a test environment, so we choose to use a self-signed certificate here
 
 ### Getting Certificate Authority
 1. `sudo openssl genrsa -out ca.key 4096` Will generate RSA private key
-2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key ca.key -out ca.crt` You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP.
+2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key ca.key -out ca.crt` You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
+After this, you will have `ca.crt` and `ca.key`.
 ### Getting Server Certificate
 1. `sudo openssl genrsa -out 192.168.1.10.key 4096` Create our own Private Key
-2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key 192.168.1.10.key -out 192.168.1.10.crt` Generate a certificate signing request. You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP.
+2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key 192.168.1.10.key -out 192.168.1.10.csr` Generate a certificate signing request. You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
+After this, you will add two more files: `192.168.56.101.csr` and `192.168.56.101.key`.
 ### Generate the certificate of your registry host:
 1. Whether you're using FQDN like **yourdomain.com** or **IP** to connect your registry host, run the command below to generate the certificate of your registry host which comply with Subject Alternative Name and x509 v3 extension requirement: <br/>
 
@@ -46,14 +48,12 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.3=192.168.1.10
-EOFcat > v3.ext <<-EOF
-authorityKeyIdentifier=keyid, issuer
-basic
+EOF
 ``` 
 
 2. 
 ```
-openssl x509 -req -sha512 -days 3650 \
+sudo openssl x509 -req -sha512 -days 3650 \
     -extfile v3.ext \
     -CA ca.crt -CAkey ca.key -CAcreateserial \
     -in 192.168.1.10.csr \
