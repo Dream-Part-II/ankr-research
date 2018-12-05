@@ -20,7 +20,15 @@ tar xvf harbor-online-installer-v1.6.2.tgz
 
 ## Configuring Harbor with HTTPS Access
 Harbor use HTTP by default to serve requests, but we set up HTTPS here for security. Harbor has an Nginx instance as a reverse proxy for all services, we can use the prepare script to configure Nginx to enable https.
-We are in a test environment, so we choose to use a self-signed certificate here. The followings will show how to create our own CA, and use the CA to sign a server certificate and a client certificate
+We are in a test environment, so we choose to use a self-signed certificate here. The followings will show how to create our own CA, and use the CA to sign a server certificate and a client certificate.<br/>
+
+Before start setting up Harbor, I want to show how to get my host IP (**192.168.0.107**). The host IP will be used during `self-signed certificate` and be used as `hostname` when configurate `harbor.cfg` later. I use Ubuntu 18.04, so use this command on terminal:
+```
+$ ip address
+----------------------------------------------------------
+inet 192.168.0.107/24 brd 192.168.0.255 scope global dynamic noprefixroute wlp2s0
+
+```
 
 ### Getting Certificate Authority
 1. Will generate RSA private key
@@ -33,15 +41,26 @@ openssl req -x509 -new -nodes -sha512 -days 365 \
 -key ca.key 
 -out ca.crt
 ``` 
-You are about to be asked to enter info that will be incorporated into your certificate request.<br/> **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
+You are about to be asked to enter info that will be incorporated into your certificate request.<br/> **Notes:** Have to fill `Common Name(CN)` with your domain or IP. <br/>
 After this, you will have `ca.crt` and `ca.key` files.
 
 ### Getting Server Certificate
-1. `sudo openssl genrsa -out 192.168.1.10.key 4096` Create our own Private Key
-2. `sudo openssl req -x509 -new -nodes -sha512 -days 365 -key 192.168.1.10.key -out 192.168.1.10.csr` Generate a certificate signing request. You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name (CN)` with your domain or IP. <br/>
-After this, you will add two more files: `192.168.56.101.csr` and `192.168.56.101.key`.
+1. Create our own Private Key
+```
+openssl genrsa -out 192.168.0.107.key 4096
+``` 
+
+2. Generate a certificate signing request.
+```
+openssl req -x509 -new -nodes -sha512 -days 365 \
+-key 192.168.0.107.key \ 
+-out 192.168.0.107.csr
+```  
+You are about to be asked to enter info that will be incorporated into your certificate request. **Notes:** Have to fill `Common Name(CN)` with your domain or IP. <br/>
+After this, you will add two more files: `192.168.0.107.csr` and `192.168.0.107.key` files.
+
 ### Generate the certificate of your registry host:
-1. Whether you're using FQDN like **yourdomain.com** or **IP** to connect your registry host, run the command below to generate the certificate of your registry host which comply with Subject Alternative Name and x509 v3 extension requirement: <br/>
+1. Whether you're using FQDN like **yourdomain.com** or **IP** to connect your registry host, run the command below to generate the certificate of your registry host which comply with Subject Alternative Name and x509 v3 extension requirement. Since we use IP here, edit `v3.ext` like below: <br/>
 
 v3.ext
 ```
@@ -50,87 +69,94 @@ authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 extendedKeyUsage = serverAuth 
-subjectAltName = @alt_names
+subjectAltName = IP:192.168.0.107
 
-[alt_names]
-DNS.3=192.168.1.10
 EOF
 ``` 
 
-2. 
+2. Create signature
 ```
-sudo openssl x509 -req -sha512 -days 3650 \
+openssl x509 -req -sha512 -days 3650 \
     -extfile v3.ext \
     -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -in 192.168.1.10.csr \
-    -out 192.168.1.10.crt
+    -in 192.168.0.107.csr \
+    -out 192.168.0.107.crt
 ``` 
+_Note:_ If you have errors that direct to re-configurate v3.ext, then modify v3.ext and redo step `2. Create signature`, and copy the new signature and key to both Harbor and Docker (refer: following steps)  
+
 ### Modify Configuration for Harbor
 **1). Configure Server Certificate and Key for Harbor** <br/>
-After obtaining the **192.168.1.10.crt** and **192.168.1.10.key** files, copy them into directory such as /data/cert/: <br/>
+After obtaining the **192.168.0.107.crt** and **192.168.0.107.key** files, copy them into directory such as `/data/cert/` under `/root`:
 ```
 sudo mkdir /data/cert/
-sudo cp 192.168.1.10.crt /data/cert/
-sudo cp 192.168.1.10.key /data/cert/
+sudo cp 192.168.0.107.crt /data/cert/
+sudo cp 192.168.0.107.key /data/cert/
 ```
 **2). Configure Server Certificate, Key and CA for Docker** <br/>
-2.1) The Docker daemon interprets `.crt` files as CA certificates and `.cert` files as client certificates. Convert server `192.168.1.10.crt` to `192.168.1.10.cert`:
+2.1) The Docker daemon interprets `.crt` files as CA certificates and `.cert` files as client certificates. Convert server `192.168.0.107.crt` to `192.168.0.107.cert`:
 ```
-sudo openssl x509 -inform PEM -in 192.168.1.10.crt -out 192.168.1.10.cert
+openssl x509 -inform PEM -in 192.168.0.107.crt -out 192.168.0.107.cert
 ```
-2.2) Deploy `192.168.1.10.cert`, `192.168.1.10.key`, and `ca.crt` for Docker:
+2.2) Deploy `192.168.0.107.cert`, `192.168.0.107.key`, and `ca.crt` for Docker:
 ```
-sudo mkdir /etc/docker/certs.d/192.168.1.10/
-sudo cp 192.168.1.10.cert /etc/docker/certs.d/192.168.1.10/
-sudo cp 192.168.1.10.key /etc/docker/certs.d/yourdomain.com/
-sudo cp ca.crt /etc/docker/certs.d/192.168.1.10/
+sudo mkdir /etc/docker/certs.d/192.168.0.107/
+sudo cp 192.168.0.107.cert /etc/docker/certs.d/192.168.0.107/
+sudo cp 192.168.0.107.key /etc/docker/certs.d/192.168.0.107/
+sudo cp ca.crt /etc/docker/certs.d/192.168.0.107/
 ```
+
 **3). Configure Harbor** <br/>
 3.1) Modify `harbor.cfg`, update the `hostname` (if necessary) and the protocol; also update the attributes `ssl_cert` and `ssl_cert_key`:
 ```
 #set hostname
-hostname = 192.168.1.10
+hostname = 192.168.0.107
 #set ui_url_protocol
 ui_url_protocol = https 
 ......
 #The path of cert and key files for nginx, they are applied only the protocol is set to https 
-ssl_cert = /data/cert/192.168.1.10.crt
-ssl_cert_key = /data/cert/192.168.1.10.key
+ssl_cert = /data/cert/192.168.0.107.crt
+ssl_cert_key = /data/cert/192.168.0.107.key
 ```
-3.2) Generate configuration files for Harbor:
+**4). Install Harbor** <br/>
+4.1) Run `install.sh`
+```
+sudo ./install.sh
+```
+This step will check Harbor running environment and install Harbor from beginning <br/>
+
+4.2) if your Harbor is running, and you re-configurate some thing, you should run `prepare script` to generate configuration files for Harbor:
 ```
 sudo ./prepare
 ```
-3.3) Since my Harbor is running, should stop and remove the existing instance.
+4.3) After `prepare script`, should stop and remove the existing instance.
 ```
-sudo docker-compose down -v
+docker-compose down -v
 ```
-3.4) Finally, restart Harbor:
+4.4) Finally, restart Harbor:
 ```
-sudo docker-compose up -d
+docker-compose up -d
 ```
-3.5) Open browser and type: https://localhost, will display the Harbor Admin Interface. Using below info to login:
+4.5) Open browser and type: https://192.168.0.107, will display the `Harbor Admin Interface`. Using below default info to login (you could modify them in `harbor.cfg`):
 ```
 username: admin
 pw: Harbor12345
 ```
 
 ### Issues when try to connect to Harbor Interface
-After setting up HTTPS for Harbor, met two issues when try to display Harbor Interface.
-```
-Notes:
-I use https://localhost to access Harbor Interface. If I use "https://192.168.1.10", couldn't get the access. But I use "https://localhost", Nginx will transfer to "https://192.168.1.10"
-```
-1. Firefox browser still shows the warning regarding Certificate Authority (CA) unknown for security reason even though we signed certificates by self-signed CA and deploy the CA to the place mentioned above. It is because self-signed CA essentially is not a trusted third-party CA. You can import the CA to the browser on your own to solve the warning.
-2. On a machine with Docker daemon, make sure the option "-insecure-registry" for 192.168.1.10 does not present.
+After setting up HTTPS for Harbor, met a issue when try to display Harbor Interface.
 
-## Log into Docker
+1. Browser still shows the warning regarding Certificate Authority (CA) unknown for security reason even though we signed certificates by self-signed CA and deploy the CA to the place mentioned above. It is because self-signed CA essentially is not a trusted third-party CA. You can import the CA to the browser on your own to solve the warning.
+
+## Log into Harbor
 ```
-sudo docker login 192.168.1.10
+docker login 192.168.0.107
 username: admin
 password: Harbor12345
 ```
-When try to login, get the error as below:
+Successfully Login with warning:
 ```
-Error response from daemon: Get https://192.168.1.10/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+WARNING! Your password will be stored unencrypted in /home/xiaoping/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
 ```
