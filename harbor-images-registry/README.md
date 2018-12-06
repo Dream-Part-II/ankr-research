@@ -52,7 +52,7 @@ openssl genrsa -out 192.168.0.107.key 4096
 
 2. Generate a certificate signing request.
 ```
-openssl req -x509 -new -nodes -sha512 -days 365 \
+openssl req -sha512 -new \
 -key 192.168.0.107.key \ 
 -out 192.168.0.107.csr
 ```  
@@ -76,7 +76,7 @@ EOF
 
 2. Create signature
 ```
-openssl x509 -req -sha512 -days 3650 \
+openssl x509 -req -sha512 -days 365 \
     -extfile v3.ext \
     -CA ca.crt -CAkey ca.key -CAcreateserial \
     -in 192.168.0.107.csr \
