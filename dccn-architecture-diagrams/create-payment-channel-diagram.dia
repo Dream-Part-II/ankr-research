@@ -535,7 +535,7 @@ daemon#</dia:string>
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#Summary of task#</dia:string>
+        <dia:string>##</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="4"/>
@@ -602,7 +602,7 @@ daemon#</dia:string>
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#Summaries of tasks#</dia:string>
+        <dia:string>##</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="4"/>
@@ -635,7 +635,7 @@ daemon#</dia:string>
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:attribute name="text">
-        <dia:string>#Task summaries#</dia:string>
+        <dia:string>##</dia:string>
       </dia:attribute>
       <dia:attribute name="type">
         <dia:enum val="4"/>
