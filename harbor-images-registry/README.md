@@ -1,7 +1,7 @@
 # Using Harbor to setup private Images registry On AWS
 
 ## Installing the AWS CLI
-The primary distribution method for the AWS CLI on Linux, Windows, and macOS is pip. But Pip is not installed by default on Ubuntu 18.04.<br/>
+The primary distribution method for the AWS CLI on Linux, Windows, and macOS is `pip`. But Pip is not installed by default on Ubuntu 18.04.<br/>
 **1. Install Pip for Python 3** <br/>
     01). Start by updating the package lsit:<br/>
     ```$ sudo apt update``` 
@@ -17,12 +17,13 @@ The primary distribution method for the AWS CLI on Linux, Windows, and macOS is 
     ```
 <br/>
 
-**2. Install AWS CLI**
+**2. Install AWS CLI** <br/>
 Since we already have pip3 and a supported version of Python, now install the AWS CLI with the following command:
 ```
 $ pip3 install awscli --upgrade --user
 ```
-![awscli version]()
+![awscli version](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/6%20aswcli-install.png) <br/>
+* We installed the latest AWS CLI version: `awscli-1.16.71`
 
 
 
