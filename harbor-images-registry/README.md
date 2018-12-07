@@ -28,10 +28,27 @@ Run the following command to uninstall:
 ```
 $ pip3 uninstall awscli
 ```
-<br/>
 
 ## Configure the AWS CLI
+**1. Configure CLI** <br/>
+01). Run `aws configure` at the command line to set up your credentials and settings:<br/>
+```
+$ aws configure 
+AWS Access Key ID [None]:
+AWS Secret Access Key [None]:
+Default region name [None]: us-west-2
+Default output format [None]:
+```
 
+* **AWS Access Key ID and AWS Secret Access Key** - These are your account credentials.
+* **Default region name** - This is the name of the region you want to make calls against by default.
+* **Default output format** - Could be json(default), text, or table.
+
+02). Run a command to verify that your credentials are configured correctly and that you can connect to AWS.
+```
+$ aws ec2 describe-regions --output table
+```
+![aws connect region](6)
 
 
 
