@@ -17,7 +17,12 @@ The primary distribution method for the AWS CLI on Linux, Windows, and macOS is 
     ```
 <br/>
 
-
+**2. Install AWS CLI**
+Since we already have pip3 and a supported version of Python, now install the AWS CLI with the following command:
+```
+$ pip3 install awscli --upgrade --user
+```
+![awscli version]()
 
 
 
