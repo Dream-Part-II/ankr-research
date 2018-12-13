@@ -144,4 +144,38 @@ $ ssh -i devenv-key.pem ubuntu@54.188.253.77
 ------------------------------------------------------
 Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 4.15.0-1027-aws x86_64)
 ```
+
+
 ## Setup Harbor On EC2
+
+### Instruction of how to Install Docker
+https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+
+### Instruction of how to Install Docker-compose
+https://docs.docker.com/compose/install/#install-compose
+
+### Instruction of how to Install Harbor v1.7.0-rc1
+01). Install and Use WGET
+```
+$ sudo apt-get update
+$ sudo apt-get install wget
+$ wget --version
+$ wget https://storage.googleapis.com/harbor-releases/release-1.7.0/harbor-offline-installer-v1.7.0-rc2.tgz
+
+```
+02). Unzip Harbor Installer
+```
+$ tar xvf harbor-offline-installer-v1.7.0-rc2.tgz
+```
+03). Navigate to `harbor` directory, accept default `harbor.cfg` configurations. Finally, run the following command to install Harbor:
+```
+sudo ./install.sh
+```
+04). Use AWS Route53 set up Domain Name: `harbor.ankr.network`
+05). Add AWS Application Load Balancer. For `http 80` requests, will redirect to `https://#{host}:443/#{path}?#{query}` with `Status code: HTTP_301`. For `https 443` requests, will forward to EC2 Harbor Instance.
+
+### Log into Harbor & push/pull images
+01). Browser Admin UI test with `https://harbor.ankr.network`
+![ui login](7 ui login.png)
+02). 
+
