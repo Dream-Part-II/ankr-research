@@ -61,7 +61,7 @@ Default output format [None]:
 ```
 $ aws ec2 describe-regions --output table
 ```
-![aws connect region](6)
+![aws connect region](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/6%20aws%20region%20table.png)
 
 
 ## Create EC2 Instance on AWS
@@ -72,7 +72,7 @@ Next we will set up prerequisites for launching an EC2 instance that can be acce
 ```
 $ aws ec2 create-security-group --group-name ankr-harbor --vpc-id vpc-xxxxxxxx --description "security group for development environment"
 ```
-We will get the `GroupId` in `json` format: `{ "GroupId" : "sg-XXXXXXXX" }`. <br/>
+We will get the `GroupId` in `json` format: `{ "GroupId" : "sg-XXXXXXXX" }`. Make note of `GroupId`, will use later. <br/>
 _Note_: Used default VPC (Virtual Private Cloud) for the region, so omit the `--vpc-id` parameter here.
 ```
 $ aws ec2 authorize-security-group-ingress --group-name ankr-harbor --protocol tcp --port 22 --cidr 0.0.0.0/0
@@ -89,4 +89,59 @@ $ aws ec2 create-key-pair --key-name devenv-key --query 'KeyMaterial' --output t
 chmod 400 devenv-key.pem
 ```
 
+### 2. Launch and Connect to the instance
+01). Run the following command, using the security group ID which we created in the previous step. Using `Amazon EC2 console` to find the AMI (Amazon Machine Image) to bootstrap the instance. Using default subnet here, so omit the `--subnet-id` parameter. This command will return the Instance ID(s). Hardware requirments for Harbor `minimal 2 CPU, minimal 4GB Mem, minimal 40GB Disk`, so choose instance type `t2.medium`.
+```
+$ aws ec2 run-instances --image-id ami-0f05ad41860678734 \
+                        --subnet-id subnet-xxxxxxxx \
+                        --security-group-ids sg-XXXXXXXX \
+                        --count 1 \
+                        --instance-type t2.medium \
+                        --key-name devenv-key \
+                        --query "Instances[0].InstanceId"
+-------------------------------------------------------------------
+"i-0787e4282810ef9cf"
+```
+02). The instance takes a few moments to launch. After the instance is up and running, we will retrieve the public IP of the instance which will be used later for connecting to the instance.
+```
+$ aws ec2 describe-instances --instance-ids  i-0787e4282810ef9cf --query "Reservations[0].Instances[0].PublicIpAddress
+--------------------------------------------------------------------
+54.188.253.77
+```
+03). To connect to the instance, use the public IP and private key `.pem` file:
+```
+ssh -i devenv-key.pem ubuntu@54.188.253.77
+```
+Get the following error/warning message:
+```
+The authenticity of host '54.188.253.77 (54.188.253.77)' can't be established.
+ECDSA key fingerprint is SHA256:ulJkxUDLUDSrjOQBVQIRrVFdO0a0tCtw+H5uyGZr9S0.
+Are you sure you want to continue connecting (yes/no)?
+Yes
+
+Warning: Permanently added '54.188.253.77' (ECDSA) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'devenv-key.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "devenv-key.pem": bad permissions
+ubuntu@54.188.253.77: Permission denied (publickey).
+
+```
+The _Permission denied(publickey)_ error is because `Permission on the key must be restricted to the ownder`.
+```
+$ ls -l devenv-key.pem
+---------------------------
+-rw-r--r-- 1 user user 1671 Dec  8 15:13 devenv-key.pem
+
+$ chmod 600 devenv-key.pem
+```
+04). Connect to the server again
+```
+$ ssh -i devenv-key.pem ubuntu@54.188.253.77
+------------------------------------------------------
+Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 4.15.0-1027-aws x86_64)
+```
 ## Setup Harbor On EC2
