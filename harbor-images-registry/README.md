@@ -208,6 +208,7 @@ a). Key-value pairs for s3 configuration, refer to: https://docs.docker.com/regi
 b). Check AWS _region_ for corresponding _region name_, please click: https://docs.aws.amazon.com/general/latest/gr/rande.html <br/>
 c). accesskey: AWS accesskey <br/>
 d). secretkey: AWS secretkey <br/>
+<br/>
 04). Run _prepare_ script to populate the configuration:
 ```
 sudo ./prepar
@@ -233,17 +234,17 @@ docker tag hello-world:latest harbor.ankr.network/https/hello-world:s3
 docker push harbor.ankr.network/https/hello-world:s3
 ```
 04). Log into AWS and check S3 bucket _ankr-harbor-test_. The directory named **docker** is in _ankr-harbor-test_ bucket
-![s3 docker directory] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/10%20docker%20s3.png)
+![s3 docker directory](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/10%20docker%20s3.png)
 
 Look into the **docker** directory, could see **s3** tag
 
-![s3 tag image] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/11%20tag%20s3.png)
+![s3 tag image](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/11%20tag%20s3.png)
 
 05). Pull the image from s3:
 ```
 docker pull harbor.ankr.network/https/hello-world:s3
 ```
-![pull s3 tag file] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/12%20hello%20s3.png)
+![pull s3 tag file](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/12%20hello%20s3.png)
 
 
 
