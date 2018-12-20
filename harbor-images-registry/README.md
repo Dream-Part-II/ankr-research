@@ -1,6 +1,14 @@
 # Using Harbor to setup private Images registry On AWS
 
-## Installing the AWS CLI
+## Table of Contents
+1. [Installing the AWS CLI](#para1)
+2. [Configure the AWS CLI](#para2)
+3. [Create EC2 Instance on AWS](#para3)
+4. [Setup Harbor On EC2](#para4)
+5. [Set Harbor's storage backend on AWS S3](#para5)
+
+
+## Installing the AWS CLI <a name="para1"></a>
 The primary distribution method for the AWS CLI on Linux, Windows, and macOS is `pip`. But Pip is not installed by default on Ubuntu 18.04.
 
 ### 1. Install Pip for Python 3 
@@ -41,7 +49,7 @@ $ pip3 uninstall awscli
 ```
 
 
-## Configure the AWS CLI
+## Configure the AWS CLI <a name="para2"></a>
 
 ### 1. Configure CLI
 01). Run `aws configure` at the command line to set up your credentials and settings:
@@ -64,7 +72,7 @@ $ aws ec2 describe-regions --output table
 ![aws connect region](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/6%20aws%20region%20table.png)
 
 
-## Create EC2 Instance on AWS
+## Create EC2 Instance on AWS <a name="para3"></a>
 
 ### 1. Create a Security Group and Key Pair for the EC2 Instance
 Next we will set up prerequisites for launching an EC2 instance that can be accessed using SSH.
@@ -146,7 +154,7 @@ Welcome to Ubuntu 18.04.1 LTS (GNU/Linux 4.15.0-1027-aws x86_64)
 ```
 
 
-## Setup Harbor On EC2
+## Setup Harbor On EC2 <a name="para4"></a>
 
 ### Instruction of how to Install Docker
 https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
@@ -187,7 +195,7 @@ To fix this issue, we should modify `prepare` script by changing `public_url` op
 03). `$ docker login harbor.ankr.network` Login again with `username: admin` and `password: Harbor12345`
 
 
-## Set Harbor's storage backend on AWS S3
+## Set Harbor's storage backend on AWS S3 <a name="para5"></a>
 By default, Harbor's storage backend is local filesystem. Here we will set AWS S3 as the storage.
 
 ### Configure s3 related parameters on harbor.cfg
