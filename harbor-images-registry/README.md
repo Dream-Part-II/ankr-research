@@ -218,8 +218,32 @@ sudo docker-compose up -d
 ```
 
 ### Test the configuration
+01). Docker client login harbor service
+```
+$ docker login harbor.ankr.network
+username: admin
+password: Harbor12345
+```
+02). Tag images
+```
+docker tag hello-world:latest harbor.ankr.network/https/hello-world:s3
+```
+03). Push images to harbor registry
+```
+docker push harbor.ankr.network/https/hello-world:s3
+```
+04). Log into AWS and check S3 bucket _ankr-harbor-test_. The directory named **docker** is in _ankr-harbor-test_ bucket
+![s3 docker directory] (10)
+
+Look into the **docker** directory, could see **s3** tag
 
 
+![s3 tag image] (11)
+05). Pull the image from s3:
+```
+docker pull harbor.ankr.network/https/hello-world:s3
+```
+![pull s3 tag file] (12)
 
 
 
