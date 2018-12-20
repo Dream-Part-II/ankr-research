@@ -178,13 +178,13 @@ sudo ./install.sh
 01). Browser Admin UI test with `https://harbor.ankr.network`
 ![ui login](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/7%20UI%20login.png)
 
-02).Log into Harbor server through Docker-CLI `docker login harbor.ankr.network` by using default `username: admin password: Harbor12345`, get the following error:
+02).Log into Harbor server through Docker-CLI `$ docker login harbor.ankr.network` by using default `username: admin password: Harbor12345`, get the following error:
 ![terminal Harbor login error](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/8%20fail%20login.png)
 
 To fix this issue, we should modify `prepare` script by changing `public_url` option from `public_url = "https" + "://" + hostname` to `public_url = protocol + "://" + hostname`
 ![changing public_url option](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/9%20publicurl.png)
 
-03). `docker login harbor.ankr.network` Login again with `username: admin` and `password: Harbor12345`
+03). `$ docker login harbor.ankr.network` Login again with `username: admin` and `password: Harbor12345`
 
 
 ## Set Harbor's storage backend on AWS S3
@@ -194,11 +194,11 @@ By default, Harbor's storage backend is local filesystem. Here we will set AWS S
 01). Create a new _bucket_ on S3, named as `ankr-harbor-test`, region name as `US West (Oregon)`. <br/>
 02). Will change Harbor's configuration, first stop existing Harbor instance
 ```
-sudo docker-compose down -v
+$ sudo docker-compose down -v
 ```
 03). Configure _harbor.cfg_
 ```
-vim harbor.cfg
+$ vim harbor.cfg
 --------------------------------------
 registry_storage_provider_name = s3
 registry_storage_provider_config = accesskey: XXXXXXXXX, secretkey: XXXXXXXXXX, region: us-west-2, bucket: ankr-harbor-test
@@ -211,11 +211,11 @@ d). secretkey: AWS secretkey <br/>
 <br/>
 04). Run _prepare_ script to populate the configuration:
 ```
-sudo ./prepar
+$ sudo ./prepar
 ```
 05). Re-create and start Harbor's instance:
 ```
-sudo docker-compose up -d
+$ sudo docker-compose up -d
 ```
 
 ### Test the configuration
@@ -227,11 +227,11 @@ password: Harbor12345
 ```
 02). Tag images
 ```
-docker tag hello-world:latest harbor.ankr.network/https/hello-world:s3
+$ docker tag hello-world:latest harbor.ankr.network/https/hello-world:s3
 ```
 03). Push images to harbor registry
 ```
-docker push harbor.ankr.network/https/hello-world:s3
+$ docker push harbor.ankr.network/https/hello-world:s3
 ```
 04). Log into AWS and check S3 bucket _ankr-harbor-test_. The directory named **docker** is in _ankr-harbor-test_ bucket
 ![s3 docker directory](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/10%20docker%20s3.png)
@@ -242,7 +242,8 @@ Look into the **docker** directory, could see **s3** tag
 
 05). Pull the image from s3:
 ```
-docker pull harbor.ankr.network/https/hello-world:s3
+$ docker pull harbor.ankr.network/https/hello-world:s3
+$ docker image ls
 ```
 ![pull s3 tag file](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/12%20hello%20s3.png)
 
