@@ -176,11 +176,14 @@ sudo ./install.sh
 
 ### Log into Harbor & push/pull images
 01). Browser Admin UI test with `https://harbor.ankr.network`
-![ui login](7 ui login.png)
+![ui login](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/7%20UI%20login.png)
+
 02).Log into Harbor server through Docker-CLI `docker login harbor.ankr.network` by using default `username: admin password: Harbor12345`, get the following error:
-![terminal Harbor login error](8 fail login)
+![terminal Harbor login error](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/8%20fail%20login.png)
+
 To fix this issue, we should modify `prepare` script by changing `public_url` option from `public_url = "https" + "://" + hostname` to `public_url = protocol + "://" + hostname`
-![changing public_url option](9 publicurl.png)
+![changing public_url option](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/9%20publicurl.png)
+
 03). `docker login harbor.ankr.network` Login again
 
 
