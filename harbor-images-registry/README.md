@@ -184,6 +184,42 @@ sudo ./install.sh
 To fix this issue, we should modify `prepare` script by changing `public_url` option from `public_url = "https" + "://" + hostname` to `public_url = protocol + "://" + hostname`
 ![changing public_url option](https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/9%20publicurl.png)
 
-03). `docker login harbor.ankr.network` Login again
+03). `docker login harbor.ankr.network` Login again with `username: admin` and `password: Harbor12345`
+
+
+## Set Harbor's storage backend on AWS S3
+By default, Harbor's storage backend is local filesystem. Here we will set AWS S3 as the storage.
+
+### Configure s3 related parameters on harbor.cfg
+01). Create a new _bucket_ on S3, named as `ankr-harbor-test`, region name as `US West (Oregon)`.
+02). Will change Harbor's configuration, first stop existing Harbor instance
+```
+sudo docker-compose down -v
+```
+03). Configure _harbor.cfg_
+```
+vim harbor.cfg
+--------------------------------------
+registry_storage_provider_name = s3
+registry_storage_provider_config = accesskey: XXXXXXXXX, secretkey: XXXXXXXXXX, region: us-west-2, bucket: ankr-harbor-test
+```
+**Notes**:
+a). Key-value pairs for s3 configuration, refer to: https://docs.docker.com/registry/configuration/#list-of-configuration-options
+b). Check AWS _region_ for corresponding _region name_, please click: https://docs.aws.amazon.com/general/latest/gr/rande.html
+c). accesskey: AWS accesskey
+d). secretkey: AWS secretkey
+04). Run _prepare_ script to populate the configuration:
+```
+sudo ./prepar
+```
+05). Re-create and start Harbor's instance:
+```
+sudo docker-compose up -d
+```
+
+### Test the configuration
+
+
+
 
 
