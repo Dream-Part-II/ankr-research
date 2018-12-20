@@ -191,7 +191,7 @@ To fix this issue, we should modify `prepare` script by changing `public_url` op
 By default, Harbor's storage backend is local filesystem. Here we will set AWS S3 as the storage.
 
 ### Configure s3 related parameters on harbor.cfg
-01). Create a new _bucket_ on S3, named as `ankr-harbor-test`, region name as `US West (Oregon)`.
+01). Create a new _bucket_ on S3, named as `ankr-harbor-test`, region name as `US West (Oregon)`. <br/>
 02). Will change Harbor's configuration, first stop existing Harbor instance
 ```
 sudo docker-compose down -v
@@ -204,10 +204,10 @@ registry_storage_provider_name = s3
 registry_storage_provider_config = accesskey: XXXXXXXXX, secretkey: XXXXXXXXXX, region: us-west-2, bucket: ankr-harbor-test
 ```
 **Notes**:
-a). Key-value pairs for s3 configuration, refer to: https://docs.docker.com/registry/configuration/#list-of-configuration-options
-b). Check AWS _region_ for corresponding _region name_, please click: https://docs.aws.amazon.com/general/latest/gr/rande.html
-c). accesskey: AWS accesskey
-d). secretkey: AWS secretkey
+a). Key-value pairs for s3 configuration, refer to: https://docs.docker.com/registry/configuration/#list-of-configuration-options <br/>
+b). Check AWS _region_ for corresponding _region name_, please click: https://docs.aws.amazon.com/general/latest/gr/rande.html <br/>
+c). accesskey: AWS accesskey <br/>
+d). secretkey: AWS secretkey <br/>
 04). Run _prepare_ script to populate the configuration:
 ```
 sudo ./prepar
@@ -233,17 +233,17 @@ docker tag hello-world:latest harbor.ankr.network/https/hello-world:s3
 docker push harbor.ankr.network/https/hello-world:s3
 ```
 04). Log into AWS and check S3 bucket _ankr-harbor-test_. The directory named **docker** is in _ankr-harbor-test_ bucket
-![s3 docker directory] (10)
+![s3 docker directory] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/10%20docker%20s3.png)
 
 Look into the **docker** directory, could see **s3** tag
 
+![s3 tag image] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/11%20tag%20s3.png)
 
-![s3 tag image] (11)
 05). Pull the image from s3:
 ```
 docker pull harbor.ankr.network/https/hello-world:s3
 ```
-![pull s3 tag file] (12)
+![pull s3 tag file] (https://github.com/Ankr-network/tee-research-and-development/blob/feature/swdev-92-harbor-images-registry/harbor-images-registry/png/12%20hello%20s3.png)
 
 
 
