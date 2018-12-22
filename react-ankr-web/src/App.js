@@ -3,10 +3,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
 import Navigation from './components/Navigation';
-import Home from './components/Home';
-import About from './components/About';
-import Product from './components/Product';
-import Contacts from './components/Contacts';
+import Home from './components/home/Home';
+import About from './components/about/About';
+import Product from './components/product/Product';
+import Contacts from './components/contacts/Contacts';
 
 class App extends Component {
   render() {
