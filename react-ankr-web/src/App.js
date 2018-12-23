@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 
-import Navigation from './components/Navigation';
+
 import Home from './components/home/Home';
 import About from './components/about/About';
 import Product from './components/product/Product';
 import Contacts from './components/contacts/Contacts';
+import Navigation from "./components/Navigation";
 
 class App extends Component {
   render() {

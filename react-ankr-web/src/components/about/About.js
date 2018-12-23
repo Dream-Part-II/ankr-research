@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import Team from './Team';
 import Opens from './Opens';
 
+
 class About extends Component {
 
     render() {
