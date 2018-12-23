@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-
+import Team from './Team';
 
 class About extends Component {
 
@@ -55,7 +55,8 @@ class About extends Component {
                     </div>
                 </div>
 
-
+                {/*Third Part of About page, named "team"*/}
+                <Team />
             
 
                 
