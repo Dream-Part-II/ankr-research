@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Team from './Team';
+import Opens from './Opens';
 
 class About extends Component {
 
@@ -85,7 +86,7 @@ class About extends Component {
 
                 {/*Sixth part of About page, named "open_positions"*/}
                 <div className="open_positions">
-
+                    <Opens />
                 </div>
             
 
