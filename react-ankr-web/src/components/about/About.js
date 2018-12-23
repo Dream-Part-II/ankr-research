@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Button } from 'react-bootstrap';
 
 import Team from './Team';
 import Opens from './Opens';
+import Footer from '../Footer';
 
 
 class About extends Component {
@@ -93,63 +94,8 @@ class About extends Component {
             
                 {/*7th part of About page, two forms: teamForm and partnerForm*/}
 
-                {/*8th part of About page, "stay tuned"*/}
-                <div className="stay_tuned">
-                    <div className="left">
-                        <h2>Stay tuned</h2>
-                        <div>Stay tuned for the latest news</div>
-
-                        <form>
-                            <FormGroup>
-                                <FormControl type="text" placeholder="Your email address" />
-                            </FormGroup>
-
-                            <Button type="submit">Subscribe</Button>
-                        </form>
-
-                        <div>support@ankr.network</div>
-                    </div>
-
-                    <div className="right">
-                        <div className="about_footer">
-                            <h5>About</h5>
-                            <ul>
-                                <li>STORY</li>
-                                <li>CAREER</li>
-                                <li>TEAM</li>
-                                <li>PRODUCT</li>
-                                <li>NEWS</li>
-                            </ul>
-                        </div>
-                        <div className="support_footer">
-                            <h5>Support</h5>
-                            <ul>
-                                <li>FAQ</li>
-                                <li>CONTACT</li>
-                                <li>LOGO ASSETS</li>
-                                <li>WHITE PAPER</li>
-                                <li>TECHNOLOGY</li>
-                            </ul>
-                        </div>
-                        <div className="social_footer">
-                            <h5>Social</h5>
-                            <ul>
-                                <li>Medium</li>
-                                <li>Twitter</li>
-                                <li>Telegram</li>
-                                <li>Youtube</li>
-                                <li>Wechat</li>
-                                <li>Instagram</li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-
+                {/*8th part of About page, <Footer />*/}
+                <Footer />
             </div> 
         );   
     }
