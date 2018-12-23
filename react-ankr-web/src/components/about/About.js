@@ -56,10 +56,40 @@ class About extends Component {
                 </div>
 
                 {/*Third Part of About page, named "team"*/}
+                <h2>Core Team</h2>
                 <Team />
+
+                {/*Fourth part of About page, named "backed_by", get images and make a table*/}
+                <div className="backed_by">
+                    <h2>Backed by</h2>
+                </div>
+
+                {/*Fifth part of About page, named "benefits"*/}
+                <div className="benefits">
+                    <h2>Benefits</h2>
+                    <div>
+                        <h5>01 Awesome Work Spaces</h5>
+                        <p>Enjoy working with the team in prime locations in San Francisco and Shanghai</p>
+                    </div>
+
+                    <div>
+                        <h5>02 Health Insurance</h5>
+                        <p>Take advantage of generous wellness incentives to stimulate productivity and growth in the workplace</p>
+                    </div>
+
+                    <div>
+                        <h5>03 Paid Vacation</h5>
+                        <p>Utilize our flexible open vacation policy to take time off when you need it</p>
+                    </div>
+                </div>
+
+                {/*Sixth part of About page, named "open_positions"*/}
+                <div className="open_positions">
+
+                </div>
             
 
-                
+
 
 
             </div> 
