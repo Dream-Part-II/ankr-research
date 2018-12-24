@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {Button, FormControl, FormGroup} from "react-bootstrap";
 
+import TeamForm from './forms/TeamForm';
+import PartnerFrom from './forms/PartnerForm';
+
 class Footer extends Component {
     render() {
         return (
             <div className="footer">
                 {/*Add TeamForm and PartnerForm here, followed by "stay_tuned"*/}
+                <TeamForm />
+                <PartnerFrom />
 
                 {/*"stay_tuned" below*/}
                 <div className="stay_tuned">
