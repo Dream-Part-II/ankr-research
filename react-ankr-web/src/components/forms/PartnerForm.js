@@ -17,12 +17,12 @@ class PartnerForm extends Component {
 
                         <FormControl
                             type="email"
-                            placeholder="Your email"
+                            placeholder="Your email address"
                         />
 
                         <FormControl
                             type="text"
-                            placeholder="Your phone"
+                            placeholder="Your phone number"
                         />
 
                         <FormControl
