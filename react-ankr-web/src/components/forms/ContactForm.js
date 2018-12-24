@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { FormGroup, FormControl, Button } from "react-bootstrap";
+import React from "react";
+import { FormGroup, Button, FormControl } from 'react-bootstrap';
 
-
-class DemoForm extends Component {
+class ContactForm extends React.Component {
     render() {
         return (
             <div>
@@ -24,11 +23,6 @@ class DemoForm extends Component {
                             type="text"
                             placeholder="Your phone number"
                         />
-
-                        <FormControl
-                            type="text"
-                            placeholder="Your position"
-                        />
                     </FormGroup>
                     <FormGroup bsSize="large">
                         <FormControl
@@ -45,4 +39,4 @@ class DemoForm extends Component {
 
 }
 
-export default DemoForm;
+export default ContactForm;
