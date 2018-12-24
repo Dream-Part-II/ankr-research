@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ContactForm from '../forms/ContactForm';
-
+import Footer from '../Footer';
 
 class Contacts extends Component {
     render() {
@@ -31,8 +31,10 @@ class Contacts extends Component {
                     <ContactForm/>
                 </div>
 
-
-
+                {/*3rd part: "footer"*/}
+                <div>
+                    <Footer/>
+                </div>
 
 
 
