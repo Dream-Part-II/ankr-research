@@ -26,7 +26,10 @@ class Footer extends Component {
                             <Button type="submit">Subscribe</Button>
                         </form>
 
-                        <div>support@ankr.network</div>
+                        <div>
+                            <span class="far fa-envelope"></span>
+                            support@ankr.network
+                        </div>
                     </div>
 
                     <div className="right">
@@ -53,18 +56,15 @@ class Footer extends Component {
                         <div className="social_footer">
                             <h5>Social</h5>
                             <ul>
-                                <li>Medium</li>
-                                <li>Twitter</li>
-                                <li>Telegram</li>
-                                <li>Youtube</li>
-                                <li>Wechat</li>
-                                <li>Instagram</li>
+                                <a href="https://medium.com/ankr-network" target="_blank"><li><li className="fab fa-medium-m">Medium</li></li></a>
+                                <a href="https://twitter.com/ankrnetwork?lang=en" target="_blank"><li><li className="fab fa-twitter">Twitter</li></li></a>
+                                <a href="https://t.me/anrknetworkann" target="_blank"><li><li className="fab fa-telegram-plane">Telegram</li></li></a>
+                                <a href="https://www.youtube.com/channel/UCr6z1C2Ti0DOS_zNqh62U-A" target="_blank"><li><li className="fab fa-youtube">Youtube</li></li></a>
+                                <li><li className="fab fa-weixin">Wechat</li></li>
+                                <a href="https://www.instagram.com/ankrnetwork/" target="_blank"><li><li className="fab fa-instagram">Instagram</li></li></a>
                             </ul>
                         </div>
-
                     </div>
-
-
                 </div>
 
                 <footer>
