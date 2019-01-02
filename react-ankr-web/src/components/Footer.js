@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {Button, FormControl, FormGroup} from "react-bootstrap";
 
 import TeamForm from './forms/TeamForm';
@@ -46,7 +47,7 @@ class Footer extends Component {
                         <div className="support_footer">
                             <h5>Support</h5>
                             <ul>
-                                <li>FAQ</li>
+                                <li><Link key={5} to='/faq'>FAQ</Link></li>
                                 <li>CONTACT</li>
                                 <li>LOGO ASSETS</li>
                                 <li>WHITE PAPER</li>
