@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 
+
 import Team from './Team';
 import Opens from './Opens';
 import Footer from '../Footer';

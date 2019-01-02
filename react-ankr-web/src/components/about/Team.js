@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import StaffCarousel from '../carousel/StaffCarousel';
 
 import { Staff } from '../../data/staff';
 
+
 class Team extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             staff: Staff
         };
@@ -18,6 +20,7 @@ class Team extends Component {
                         <li key={idx}>
                             <img src={person.img} alt="staff"/>
                             {person.name} {person.title}
+                            <StaffCarousel id={idx}/>
                         </li>
                     );
                 })}
