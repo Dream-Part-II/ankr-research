@@ -7,6 +7,7 @@ import RoadMap from './road_map';
 import Partners from './partners';
 import LatestNews from './latest_news';
 
+import DemoForm from '../forms/DemoForm';
 
 class Home extends Component {
     render() {
