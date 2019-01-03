@@ -48,8 +48,10 @@ class App extends Component {
           <Navigation
               teamShow={this.state.teamFormShow}
               partnerShow={this.state.partnerFormShow}
+              demoShow={this.state.demoFormShow}
               onTeamChange={this.handleTeamForm}
               onPartnerChange={this.handlePartnerForm}
+              onDemoChange={this.handleDemoForm}
           />
 
           <Route path='/' exact component={Home} />

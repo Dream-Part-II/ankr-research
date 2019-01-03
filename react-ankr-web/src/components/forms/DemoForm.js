@@ -73,9 +73,9 @@ class DemoForm extends Component {
     render() {
         return (
             <div>
-                <Button>JOIN OUR TEAM</Button>
+                <Button onClick={this.props.onChange}>REQUEST A DEMO</Button>
 
-                <Modal >
+                <Modal show={this.props.show}>
                     <Modal.Header>
                         <Modal.Title>Request demos</Modal.Title>
                     </Modal.Header>
@@ -121,7 +121,7 @@ class DemoForm extends Component {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button onClick={this.props.onChange} >Close</Button>
+                        <Button onClick={this.props.onChange}>Close</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
