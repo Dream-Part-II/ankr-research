@@ -11,6 +11,9 @@ import FAQ from './components/FAQ/faq';
 
 
 class App extends Component {
+  // constructor() {
+  //
+  // }
   render() {
     return (
       <BrowserRouter>
