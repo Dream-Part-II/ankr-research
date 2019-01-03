@@ -10,6 +10,8 @@ class Navigation extends Component {
                 <Link key={2} to='/about'>About</Link>
                 <Link key={3} to='/product'>Product</Link>
                 <Link key={4} to='/contacts'>Contacts</Link>
+                <a>JOIN OUR TEAM</a>
+                <a>BECOME A PARTNER</a>
             </div>
         );
     }
