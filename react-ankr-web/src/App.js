@@ -10,6 +10,9 @@ import Navigation from './components/Navigation';
 import FAQ from './components/FAQ/faq';
 import Footer from './components/Footer';
 
+// using SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+
 
 class App extends Component {
   constructor() {

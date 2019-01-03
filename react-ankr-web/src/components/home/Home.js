@@ -6,7 +6,12 @@ import UseCases from './use_cases';
 import RoadMap from './road_map';
 import Partners from './partners';
 import LatestNews from './latest_news';
+<<<<<<< HEAD
 
+=======
+import Footer from '../Footer';
+import DemoForm from '../forms/DemoForm';
+>>>>>>> c330426e44b404b846ab63d878e31d613410ef92
 
 class Home extends Component {
     render() {
@@ -21,6 +26,11 @@ class Home extends Component {
                     <RoadMap />
                     <Partners />
                     <LatestNews />
+<<<<<<< HEAD
+=======
+                    <Footer />
+                    
+>>>>>>> c330426e44b404b846ab63d878e31d613410ef92
                 </div>
             </div>
             
