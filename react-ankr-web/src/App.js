@@ -8,6 +8,9 @@ import Product from './components/product/Product';
 import Contacts from './components/contacts/Contacts';
 import Navigation from "./components/Navigation";
 
+// using SendGrid's v3 Node.js Library
+// https://github.com/sendgrid/sendgrid-nodejs
+
 
 class App extends Component {
   render() {
