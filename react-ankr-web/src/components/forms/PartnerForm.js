@@ -6,7 +6,7 @@ class PartnerForm extends Component {
     render() {
         return (
             <div>
-                <Button onClick={this.props.onChange}>BECOME A PARTNER</Button>
+                <Button onClick={this.props.onChange}><span className="fas fa-plus">BECOME A PARTNER</span></Button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>

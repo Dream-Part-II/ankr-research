@@ -45,12 +45,19 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navigation />
+          <Navigation
+              teamShow={this.state.teamFormShow}
+              partnerShow={this.state.partnerFormShow}
+              onTeamChange={this.handleTeamForm}
+              onPartnerChange={this.handlePartnerForm}
+          />
+
           <Route path='/' exact component={Home} />
           <Route path='/about' component={About} />
           <Route path='/product' component={Product} />
           <Route path='/contacts' component={Contacts} />
           <Route path='/faq' component={FAQ} />
+
           <Footer
             teamShow={this.state.teamFormShow}
             partnerShow={this.state.partnerFormShow}

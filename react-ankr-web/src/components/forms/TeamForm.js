@@ -7,7 +7,7 @@ class TeamForm extends Component {
     render() {
         return (
             <div className="teamForm">
-                <Button onClick={this.props.onChange}>JOIN OUR TEAM</Button>
+                <Button onClick={this.props.onChange}><span className="fab fa-staylinked">JOIN OUR TEAM</span></Button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>
