@@ -8,23 +8,35 @@ class Team extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            staff: Staff
+            staff: Staff,
+            carouselShow: false,
         };
+    }
+
+    handleClick = () => {
+        this.setState({ carouselShow: !this.state.carouselShow });
     }
 
     render() {
         return (
-            <ul>
-                {this.state.staff.map((person, idx) => {
-                    return (
-                        <li key={idx}>
-                            <img src={person.img} alt="staff"/>
-                            {person.name} {person.title}
-                            <StaffCarousel id={idx}/>
-                        </li>
-                    );
-                })}
-            </ul>
+            <div>
+                <ul>
+                    {this.state.staff.map((person, idx) => {
+                        return (
+                            <li key={idx}>
+                                <button onClick={this.handleClick}>
+                                    <img src={person.img} alt="staff"/>
+                                    {person.name}
+                                </button>
+                                {person.title}
+                            </li>
+                        );
+                    })}
+                </ul>
+
+                <StaffCarousel show={this.state.carouselShow} onChange={this.handleClick} />
+            </div>
+
         );
     }
 }
