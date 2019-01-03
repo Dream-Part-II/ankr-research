@@ -10,7 +10,7 @@ class Main extends Component {
             in data centers and edge devices
             </p>
             <div>   
-                <button> 
+                <button>
                     request a demo   
                 </button>
             </div>

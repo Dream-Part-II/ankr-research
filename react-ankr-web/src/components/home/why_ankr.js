@@ -10,7 +10,7 @@ class WhyAnkr extends Component {
                 </h2>
                 
                 <div>
-                    <div class='col-md-3'>
+                    <div className ='col-md-3'>
                         <h3>
                             Higher Availbility
                         </h3>
@@ -21,7 +21,7 @@ class WhyAnkr extends Component {
                         </p>
                     </div>
                         
-                    < div class = 'col-md-3' >
+                    < div className = 'col-md-3' >
                         <h3>
                             Cheaper Price 
                         </h3>
@@ -32,7 +32,7 @@ class WhyAnkr extends Component {
                         </p>
                     </div>
 
-                    < div class = 'col-md-3' >
+                    < div className = 'col-md-3' >
                         <h3>
                             Easier Integration
                         </h3>
@@ -42,7 +42,7 @@ class WhyAnkr extends Component {
                         </p>
                     </div>
 
-                    < div class = 'col-md-3' >
+                    < div className = 'col-md-3' >
                         <h3>
                             Securer Communication
                         </h3>
