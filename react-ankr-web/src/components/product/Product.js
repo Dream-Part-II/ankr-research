@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Button } from 'react-bootstrap';
-import Footer from '../Footer';
+
 
 class Product extends Component {
     render() {
@@ -114,9 +114,6 @@ class Product extends Component {
                         <div>Mobile can be fit most for the large amount small batch process jobs. This will highly leverage ARM TrustZone and potentially expand to solutions related to IoT technology.</div>
                     </div>
                 </div>
-
-                {/*Footer*/}
-                <Footer />
             </div> 
         );  
     }

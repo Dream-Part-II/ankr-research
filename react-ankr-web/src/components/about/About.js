@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import {FormGroup, FormControl, Button, Modal} from 'react-bootstrap';
 
 
 import Team from './Team';
 import Opens from './Opens';
-import Footer from '../Footer';
 
 
 class About extends Component {
 
-    render() {
+
+    render(){
         return(
             <div className="about"> 
                 {/**First part of About, named "change_world" */}
@@ -92,11 +92,6 @@ class About extends Component {
                 <div className="open_positions">
                     <Opens />
                 </div>
-            
-                {/*7th part of About page, two forms: teamForm and partnerForm*/}
-
-                {/*8th part of About page, <Footer />*/}
-                <Footer />
             </div> 
         );   
     }
