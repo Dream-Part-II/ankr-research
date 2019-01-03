@@ -51,7 +51,12 @@ class App extends Component {
           <Route path='/product' component={Product} />
           <Route path='/contacts' component={Contacts} />
           <Route path='/faq' component={FAQ} />
-          <Footer />
+          <Footer
+            teamShow={this.state.teamFormShow}
+            partnerShow={this.state.partnerFormShow}
+            onTeamChange={this.handleTeamForm}
+            onPartnerChange={this.handlePartnerForm}
+          />
         </div>
       </BrowserRouter> 
     );
