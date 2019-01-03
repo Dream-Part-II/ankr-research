@@ -6,13 +6,17 @@ import Home from './components/home/Home';
 import About from './components/about/About';
 import Product from './components/product/Product';
 import Contacts from './components/contacts/Contacts';
-import Navigation from "./components/Navigation";
+import Navigation from './components/Navigation';
+import FAQ from './components/FAQ/faq';
 
 // using SendGrid's v3 Node.js Library
 // https://github.com/sendgrid/sendgrid-nodejs
 
 
 class App extends Component {
+  // constructor() {
+  //
+  // }
   render() {
     return (
       <BrowserRouter>
@@ -22,6 +26,7 @@ class App extends Component {
           <Route path='/about' component={About} />
           <Route path='/product' component={Product} />
           <Route path='/contacts' component={Contacts} />
+          <Route path='/faq' component={FAQ} />
         </div>
       </BrowserRouter> 
     );
