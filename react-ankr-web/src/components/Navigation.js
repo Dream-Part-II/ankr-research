@@ -10,7 +10,7 @@ class Navigation extends Component {
     render() {
         return(
             <div className='nav'>
-                <Link key={1} to=''>Home</Link>
+                <Link key={1} to='/home'>Home</Link>
                 <Link key={2} to='/about'>About</Link>
                 <Link key={3} to='/product'>Product</Link>
                 <Link key={4} to='/contacts'>Contacts</Link>
