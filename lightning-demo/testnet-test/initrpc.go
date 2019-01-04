@@ -45,7 +45,7 @@ func main() {
 
 	var autoAuth bytes.Buffer
 	if err := t.Execute(&autoAuth, randRpcOptions); err != nil {
-		log.Fatalf("unable to generate random auth: %v")
+		log.Fatalf("unable to generate random auth: %v", err)
 	}
 
 	btcdHomeDir := btcutil.AppDataDir("btcd", false)
