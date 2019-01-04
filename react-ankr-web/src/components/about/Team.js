@@ -30,9 +30,11 @@ class Team extends Component {
                 <ul>
                     {this.state.staff.map((person, idx) => {
                         return (
-                            <li key={idx} onClick={this.handleEventChange(idx)}>
-                                <img src={person.img} alt="staff"/>
-                                {person.name}
+                            <li key={idx} >
+                                <button onClick={this.handleEventChange(idx)}>
+                                    <img src={person.img} alt="staff"/>
+                                    {person.name}
+                                </button>
                                 {person.title}
                             </li>
                         );

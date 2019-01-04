@@ -37,7 +37,7 @@ class Footer extends Component {
                         <div className="about_footer">
                             <h5>About</h5>
                             <ul>
-                                <li>STORY</li>
+                                <li><a href="#our-story">STORY</a></li>
                                 <li>CAREER</li>
                                 <li>TEAM</li>
                                 <li>PRODUCT</li>
