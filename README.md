@@ -1,10 +1,12 @@
-# SGX C++ Code Examples
+# Trusted execution environment research and development
 
-I have created two examples. One is a hello world style program, and the other is a basic stats calculator. In addition, these programs can be run in hardware mode.
+Research and development projects related to trusted execution environments
 
-Note:  This project was inspired by: https://github.com/digawp/hello-enclave . See that link for further specific information.
-
-In to run these projects make sure that the SGX SDK and driver are installed on your machine. To make and run, do the following in terminal:
-
-1. make
-2. ./app
+1. Containerized SGX-based application
+1. Asylo framework evaluation
+1. Architecture diagrams for distributed cloud computing network project
+1. µRaiden Payment Service
+1. Lightning implementations for Payments
+1. Harbor to setup private Images registry On AWS
+1. Research on account management
+1. SGX enclave
