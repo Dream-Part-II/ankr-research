@@ -64,6 +64,8 @@ class Home extends Component {
                     <DemoForm
                         handleChange = {this.handleChange}
                         handleSubmit = {this.handleSubmit}
+                        show={this.props.demoShow}
+                        onChange={this.props.onDemoChange}
                     />
                 </div>
 
