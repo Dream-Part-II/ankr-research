@@ -1,6 +1,6 @@
 # Ankr Research
 
-## Research and Development Projects Related to Distributed Computing, Blockchain, Trusted Execution Environments, Payment, UI/UX
+## Proof-of-Concept Projects Related to Distributed Computing, Blockchain, Trusted Execution Environments, Payment, UI/UX
 
 1. Containerized SGX-based application
 1. Asylo framework evaluation
