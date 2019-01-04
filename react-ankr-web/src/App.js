@@ -54,7 +54,7 @@ class App extends Component {
               onDemoChange={this.handleDemoForm}
           />
 
-          <Route path='/' exact render={(props) => <Home {...props} demoShow={this.state.demoFormShow} onDemoChange={this.handleDemoForm} />} />
+          <Route path='/home' exact render={(props) => <Home {...props} demoShow={this.state.demoFormShow} onDemoChange={this.handleDemoForm} />} />
           <Route path='/about' component={About} />
           <Route path='/product' component={Product} />
           <Route path='/contacts' component={Contacts} />

@@ -37,21 +37,21 @@ class Footer extends Component {
                         <div className="about_footer">
                             <h5>About</h5>
                             <ul>
-                                <li><a href="#our-story">STORY</a></li>
-                                <li>CAREER</li>
-                                <li>TEAM</li>
-                                <li>PRODUCT</li>
-                                <li>NEWS</li>
+                                <li><a href="about#our-story">STORY</a></li>
+                                <li><a href="about#career">CAREER</a></li>
+                                <li><a href="about#team">TEAM</a></li>
+                                <li><a href="product">PRODUCT</a></li>
+                                <li><a href="home#news">NEWS</a></li>
                             </ul>
                         </div>
                         <div className="support_footer">
                             <h5>Support</h5>
                             <ul>
-                                <li><Link key={5} to='/faq'>FAQ</Link></li>
-                                <li>CONTACT</li>
-                                <li>LOGO ASSETS</li>
-                                <li>WHITE PAPER</li>
-                                <li>TECHNOLOGY</li>
+                                <li><a href="faq">FAQ</a></li>
+                                <li><a href="contacts#contacts">CONTACT</a></li>
+                                <li><a href="https://www.ankr.network/pdf/LOGO%20ASSETS.pdf" target="_blank">LOGO ASSETS</a></li>
+                                <li><a href="https://www.ankr.network/pdf/AnkrWhitepaper.pdf" target="_blank">WHITE PAPER</a></li>
+                                <li><a href="product#tech_overview">TECHNOLOGY</a></li>
                             </ul>
                         </div>
                         <div className="social_footer">

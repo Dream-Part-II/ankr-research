@@ -178,7 +178,7 @@ class Home extends Component {
             </div>
             
             {/* latest news */}
-            <div>
+            <div id="news">
                 <h2>Latest News</h2>
 
                 <div>
