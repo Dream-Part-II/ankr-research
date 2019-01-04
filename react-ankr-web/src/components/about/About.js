@@ -39,7 +39,7 @@ class About extends Component {
                 </div>
 
                 {/**Second part of About page, named "story" */}
-                <div className="story">
+                <div className="story" id="our-story">
                     <h2>Our story</h2>
                     <p>"I believe that cloud computing should be ubiquitous in the near future, but it’s currently monopolized 
                         by tech giants. High margins are charged against users due to high infrastructure and human capital costs.</p>
