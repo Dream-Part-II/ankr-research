@@ -5,18 +5,9 @@ class Main extends Component {
     render() {
         return ( 
         <div>
-            What's Ankr 
-            <div>
-            <p>
-            Build a Faster, Cheaper, Securer cloud using idle processing power 
-            in data centers and edge devices
-            </p>
-            <div>   
-                <button>
-                    request a demo   
-                </button>
-            </div>
-            </div>
+
+            {/* What's Ankr */}
+            
             <div>
                 <h2>
                 What 's Ankr? 
@@ -35,6 +26,9 @@ class Main extends Component {
                 </button> 
 
                 </div>
+
+                {/* Why Ankr */}
+
                 <div>
                 <h2>
                     Why Ankr?
@@ -86,6 +80,7 @@ class Main extends Component {
             </div>
 
             {/* Use Cases */}
+
             <div>
                 <h2>
                     Use Cases

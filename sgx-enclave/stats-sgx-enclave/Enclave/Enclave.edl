@@ -1,0 +1,14 @@
+enclave {
+	trusted {
+        /* define ECALLs here. */
+        public float calculate_average();
+        public void add_integer(int num);
+        public float calculate_median();
+        public float calculate_std();
+    };
+
+    untrusted {
+        /* define OCALLs here. */
+        void ocall_print([in, string]const char* str);
+    };
+};
