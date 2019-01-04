@@ -10,16 +10,16 @@ class StaffCarousel extends Component {
         return (
             <div>
                 <Modal show={this.props.show} onHide={this.props.onChange}>
-                    <Modal.Header closeButton></Modal.Header>
+                    <Modal.Header closeButton />
 
                     <Modal.Body>
                         <Carousel
                             interval={null}
-                            // defaultActiveIndex={this.props.id}
+                            defaultActiveIndex={this.props.id}
                         >
                             {Staff.map((item, idx) =>
                                 <Carousel.Item key={idx}>
-                                    <img src={item.img}/>
+                                    <img src={item.img} alt="photos"/>
                                     <Carousel.Caption>
                                         <div>{item.name}</div>
                                         <div>{item.title}</div>
