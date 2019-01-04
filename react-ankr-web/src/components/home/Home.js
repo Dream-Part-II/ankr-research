@@ -49,10 +49,9 @@ class Home extends Component {
             this.state.message
         );
 
-        this.setState({
-            formSubmitted: true
-        });
+            }
     }
+    
 
     render() {
         return(

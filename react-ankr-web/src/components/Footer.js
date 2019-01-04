@@ -19,7 +19,7 @@ class Footer extends Component {
                         <h2>Stay tuned</h2>
                         <div>Stay tuned for the latest news</div>
 
-                        <form>
+                        <form onSubmit = {this.props.handleSubmit}>
                             <FormGroup>
                                 <FormControl type="text" placeholder="Your email address" />
                             </FormGroup>
