@@ -22,6 +22,10 @@ class App extends Component {
       teamFormShow: false,
       partnerFormShow: false,
       demoFormShow: false,
+      message: '',
+      receiverEmail: 'bianz20@berkeley.edu',
+      template: 'template_C0GJPd8I',
+      senderEmail: ''
     }
   }
 
@@ -40,6 +44,42 @@ class App extends Component {
     this.setState({demoFormShow: !this.state.demoFormShow});
   }
 
+  sendFeedback = (templateId, senderEmail, receiverEmail, feedback) => {
+    console.log(senderEmail);
+    console.log(receiverEmail);
+    window.emailjs
+      .send('contact', templateId, {
+        senderEmail,
+        receiverEmail,
+        feedback
+      })
+      .then(res => {
+        this.setState({
+          formEmailSent: true
+        });
+      })
+      // Handle errors 
+      .catch(err => console.error('Failed to send feedback. Error: ', err));
+
+  }
+  handleChange = (event) => {
+    this.setState({
+      message: event.target.value
+    });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('sending message...')
+    this.sendFeedback(
+      this.state.template,
+      this.state.senderEmail,
+      this.state.receiverEmail,
+      this.state.message
+    );
+
+
+  }
 
   render() {
     return (
@@ -65,6 +105,8 @@ class App extends Component {
             partnerShow={this.state.partnerFormShow}
             onTeamChange={this.handleTeamForm}
             onPartnerChange={this.handlePartnerForm}
+            handleChange = {this.handleChange}
+            handleSubmit = {this.handleSubmit}
           />
         </div>
       </BrowserRouter> 
