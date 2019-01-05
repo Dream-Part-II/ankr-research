@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import DemoForm from '../forms/DemoForm';
+import update1 from '../../images/update-1.png';
+import update2 from '../../images/update-2.png';
+import update3 from '../../images/update-3.png';
+import update4 from '../../images/update-4.png';
+import update5 from '../../images/update-5.png';
+import updateToken1 from '../../images/up-tocken-1.jpeg';
+import updateToken from '../../images/update-token.png';
 
 
 class Home extends Component {
@@ -179,8 +186,10 @@ class Home extends Component {
                     <h2>Latest News</h2>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-5-4dc433998277" target="_blank">Ankr Network Bi - weekly Update 5</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-5-4dc433998277" target="_blank">
+                            <img src={update5} />
+                            <h4>Ankr Network Bi - weekly Update 5</h4>
+                        </a>
                         <p>Over the past two weeks, we have made remarkable progress on
                             technology development.Meanwhile we have planned...</p>
                         <div>
@@ -191,8 +200,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-4-be4ce1c8b5b7" target="_blank">Ankr Network Bi - weekly Update 4</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-4-be4ce1c8b5b7" target="_blank">
+                            <img src={update4} />
+                            <h4>Ankr Network Bi - weekly Update 4</h4>
+                        </a>
                         <p>Over the past two weeks, we have been focusing on solutions
                             for utilising idle resources in data centers...</p>
                         <div>
@@ -203,8 +214,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-bi-weekly-issue-3-2407c48af11" target="_blank">Ankr Network Bi - weekly Update 3</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-bi-weekly-issue-3-2407c48af11" target="_blank">
+                            <img src={update3} />
+                            <h4>Ankr Network Bi - weekly Update 3</h4>
+                        </a>
                         <p>Welcome to Ankr Bi - weekly!This is our third issue, and
                             we appreciate your attention.First of all, we want to
                             express...</p>
@@ -216,8 +229,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-2-user-feedback-contest-c66efd51fad3" target="_blank">Ankr Network Bi-weekly Update 2 + User Feedback Contest</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-2-user-feedback-contest-c66efd51fad3" target="_blank">
+                            <img src={update2} />
+                            <h4>Ankr Network Bi-weekly Update 2 + User Feedback Contest</h4>
+                        </a>
                         <p>This week marks the second issuance of Ankr Network Bi-Weekly Update and the start of our User Feedback & Advice Contest...</p>
                         <div>
                             {/*<img></img>*/}
@@ -227,8 +242,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-1-3588f19fe5a5" target="_blank">Ankr Network Bi-weekly Update 1</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-network-bi-weekly-update-1-3588f19fe5a5" target="_blank">
+                            <img src={update1} />
+                            <h4>Ankr Network Bi-weekly Update 1</h4>
+                        </a>
                         <p>This week marks the first issuance of Ankr Network Bi-Weekly Update. We thank you for your consistent support.</p>
                         <div>
                             {/*<img></img>*/}
@@ -238,8 +255,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/ankr-network-update-and-token-sale-instructions-a377a0ffa47e" target="_blank">Ankr Network Update and Token Sale Instructions</a></h4>
+                        <a href="https://medium.com/ankr-network/ankr-network-update-and-token-sale-instructions-a377a0ffa47e" target="_blank">
+                            <img src={updateToken} />
+                            <h4>Ankr Network Update and Token Sale Instructions</h4>
+                        </a>
                         <p>We don’t think projects should ask communities to do things like Proof of Love or Proof of Care. Here at Ankr...</p>
                         <div>
                             {/*<img></img>*/}
@@ -249,8 +268,10 @@ class Home extends Component {
                     </div>
 
                     <div className="news-item">
-                        {/*<img></img>*/}
-                        <h4><a href="https://medium.com/ankr-network/where-we-were-where-we-are-where-were-going-721f1be06227" target="_blank">Where We Were, Where We Are, Where We’re Going</a></h4>
+                        <a href="https://medium.com/ankr-network/where-we-were-where-we-are-where-were-going-721f1be06227" target="_blank">
+                            <img src={updateToken1} />
+                            <h4>Where We Were, Where We Are, Where We’re Going</h4>
+                        </a>
                         <p>A token can mean a lot of things. But to us at Ankr, a token is more than a cryptocurrency. ANKR tokens are...</p>
                         <div>
                             {/*<img></img>*/}
