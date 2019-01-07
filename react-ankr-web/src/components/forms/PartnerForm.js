@@ -15,7 +15,9 @@ class PartnerForm extends Component {
                         <img className="footer-forms-btn-f2" src={f2} alt="partner logo" />
                     </div>
                     <div className={this.props.navBar ? "partner-form-info" : "footer-partner-form-info"}>
-                        <div className="footer-partner-form-info-title"><strong>BECOME A PARTNER</strong></div>
+                        <div className={this.props.navBar ? "partner-form-info-title" : "footer-partner-form-info-title"}>
+                            <span className={this.props.navBar ? "fas fa-plus" : "none-navbar-partner-form"}><strong>BECOME A PARTNER</strong></span>
+                        </div>
                         <div className={this.props.navBar ? "partner-form-desc" : "footer-partner-form-desc"}>Expand your business with us</div>
                     </div>
                 </button>

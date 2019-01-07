@@ -35,8 +35,14 @@ class Navigation extends Component {
                         <NavItem><Link key={4} to='/contacts'>Contacts</Link></NavItem>
                     </div>
                     <div className="navbar-forms">
-                        <NavItem><span className="fab fa-staylinked"><TeamForm navBar={this.state.navBar} show={this.props.teamShow} onChange={this.props.onTeamChange} /></span></NavItem>
-                        <NavItem><span className="fas fa-plus"><PartnerForm navBar={this.state.navBar} show={this.props.partnerShow} onChange={this.props.onPartnerChange} /></span></NavItem>
+                        <NavItem>
+                            <TeamForm navBar={this.state.navBar} show={this.props.teamShow} onChange={this.props.onTeamChange} />
+                        </NavItem>
+
+                        <NavItem>
+                            <PartnerForm navBar={this.state.navBar} show={this.props.partnerShow} onChange={this.props.onPartnerChange} />
+                        </NavItem>
+
                         <NavItem><DemoForm show={this.props.demoShow} onChange={this.props.onDemoChange}/></NavItem>
                     </div>
                 </Nav>

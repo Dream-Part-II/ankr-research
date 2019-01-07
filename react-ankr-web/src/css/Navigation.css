@@ -40,4 +40,8 @@
     flex-direction: row;
 }
 
+.team-form-icon {
+    display: inline-block;
+}
+
 

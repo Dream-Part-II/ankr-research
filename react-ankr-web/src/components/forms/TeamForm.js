@@ -17,8 +17,10 @@ class TeamForm extends Component {
                         <img className="footer-forms-btn-f1" src={f1} alt="join logo"/>
                     </div>
                     <div className={this.props.navBar ? "team-form-info" : "footer-team-form-info"}>
-                        <div className="footer-team-form-info-title"><strong>JOIN OUR TEAM</strong></div>
-                        <div className={this.props.navBar ? "team-form-desc" : "footer-team-form-desc"}>Build next-generation products with us</div>
+                        <div className={this.props.navBar ? "team-form-info-title" : "footer-team-form-info-title"}>
+                            <span className={this.props.navBar ? "fab fa-staylinked" : "none-navbar-fa"}><strong>JOIN OUR TEAM</strong></span>
+                        </div>
+                        <div className={this.props.navBar ? "team-form-desc" : "footer-"}>Build next-generation products with us</div>
                     </div>
                 </button>
 
