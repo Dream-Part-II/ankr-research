@@ -12,13 +12,13 @@ class TeamForm extends Component {
         return (
             <div className="teamForm">
                 <Button onClick={this.props.onChange}>
-                    <div className="team-form-logo">
+                    <div className={this.props.navBar ? "team-form-logo" : "footer-team-form-logo"}>
                         <img className="footer-forms-btn-left-bracket" src={bracket} alt="logo bracket" />
                         <img className="footer-forms-btn-f1" src={f1} alt="join logo"/>
                     </div>
                     <div>
                         <span className="fab fa-staylinked">JOIN OUR TEAM</span>
-                        <div className="team-form-desc">Build next-generation products with us</div>
+                        <div className={this.props.navBar ? "team-form-desc" : "footer-team-form-desc"}>Build next-generation products with us</div>
                     </div>
                 </Button>
 

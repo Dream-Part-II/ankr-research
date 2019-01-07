@@ -10,7 +10,13 @@ import logo from '../images/logo-icon.svg';
 import '../css/Navigation.css';
 
 
+
 class Navigation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { navBar: true };
+    }
+
     render() {
         return(
             <Navbar
@@ -29,8 +35,8 @@ class Navigation extends Component {
                         <NavItem><Link key={4} to='/contacts'>Contacts</Link></NavItem>
                     </div>
                     <div className="navbar-forms">
-                        <NavItem><TeamForm show={this.props.teamShow} onChange={this.props.onTeamChange} /></NavItem>
-                        <NavItem><PartnerForm show={this.props.partnerShow} onChange={this.props.onPartnerChange} /></NavItem>
+                        <NavItem><TeamForm navBar={this.state.navBar} show={this.props.teamShow} onChange={this.props.onTeamChange} /></NavItem>
+                        <NavItem><PartnerForm navBar={this.state.navBar} show={this.props.partnerShow} onChange={this.props.onPartnerChange} /></NavItem>
                         <NavItem><DemoForm show={this.props.demoShow} onChange={this.props.onDemoChange}/></NavItem>
                     </div>
                 </Nav>

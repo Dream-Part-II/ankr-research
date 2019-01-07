@@ -10,13 +10,13 @@ class PartnerForm extends Component {
         return (
             <div>
                 <Button onClick={this.props.onChange}>
-                    <div className="partner-form-logo">
+                    <div className={this.props.navBar ? "partner-form-logo" : "footer-partner-form-logo"}>
                         <img className="footer-forms-btn-right-bracket" src={bracket} alt="logo bracket" />
                         <img className="footer-forms-btn-f2" src={f2} alt="partner logo" />
                     </div>
                     <div>
                         <span className="fas fa-plus">BECOME A PARTNER</span>
-                        <div className="partner-form-desc">Expand your business with us</div>
+                        <div className={this.props.navBar ? "partner-form-desc" : "footer-partner-form-desc"}>Expand your business with us</div>
                     </div>
 
                 </Button>
