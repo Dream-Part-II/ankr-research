@@ -41,7 +41,7 @@ class Footer extends Component {
                                 <li><a href="about#career">CAREER</a></li>
                                 <li><a href="about#team">TEAM</a></li>
                                 <li><a href="product">PRODUCT</a></li>
-                                <li><a href="home#news">NEWS</a></li>
+                                <li><a href="/#news">NEWS</a></li>
                             </ul>
                         </div>
                         <div className="support_footer">
