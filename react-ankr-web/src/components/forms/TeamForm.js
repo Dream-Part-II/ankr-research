@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button, Modal } from "react-bootstrap";
+import bracket from "../../images/bracket.svg";
+import f1 from "../../images/f-1.svg";
+
+import '../../css/TeamForm.css';
 
 
 class TeamForm extends Component {
@@ -7,7 +11,16 @@ class TeamForm extends Component {
     render() {
         return (
             <div className="teamForm">
-                <Button onClick={this.props.onChange}><span className="fab fa-staylinked">JOIN OUR TEAM</span></Button>
+                <Button onClick={this.props.onChange}>
+                    <div className="team-form-logo">
+                        <img className="footer-forms-btn-left-bracket" src={bracket} alt="logo bracket" />
+                        <img className="footer-forms-btn-f1" src={f1} alt="join logo"/>
+                    </div>
+                    <div>
+                        <span className="fab fa-staylinked">JOIN OUR TEAM</span>
+                        <div className="team-form-desc">Build next-generation products with us</div>
+                    </div>
+                </Button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>

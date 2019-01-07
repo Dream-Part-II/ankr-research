@@ -1,0 +1,50 @@
+/*.footer {*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+/*}*/
+
+/*.footer-forms {*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+/*}*/
+
+/*.footer-forms-btn-left {*/
+    /*width: 50%;*/
+    /*height: 12em;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*position: relative;*/
+/*}*/
+
+/*.footer-forms-btn-right {*/
+    /*width: 50%;*/
+    /*height: 12em;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+/*}*/
+
+/*.footer-forms-btn-left-bracket {*/
+    /*width: 6em;*/
+    /*position: relative;*/
+    /*top: 0.5em;*/
+    /*left: 15em;*/
+/*}*/
+
+/*.footer-forms-btn-f1 {*/
+    /*width: 3em;*/
+    /*position: absolute;*/
+    /*top: 5em;*/
+    /*left: 17em;*/
+/*}*/
+
+/*.footer-forms-btn-right-bracket {*/
+    /*width: 6em;*/
+    /*position: relative;*/
+    /*top: 0.5em;*/
+    /*left: 15em;*/
+/*}*/
+
+/*.footer-forms-btn-f2 {*/
+    /*width: 3em;*/
+    /*position: absolute;*/
+/*}*/

@@ -1,20 +1,43 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import {Button, FormControl, FormGroup} from "react-bootstrap";
+import '../css/Footer.css';
 
 import TeamForm from './forms/TeamForm';
 import PartnerFrom from './forms/PartnerForm';
+import bracket from '../images/bracket.svg';
+import f1 from '../images/f-1.svg';
+import f2 from '../images/f-2.svg';
 
 class Footer extends Component {
     render() {
         return (
             <div className="footer">
-                {/*Add TeamForm and PartnerForm here, followed by "stay_tuned"*/}
-                <TeamForm show={this.props.teamShow} onChange={this.props.onTeamChange} />
-                <PartnerFrom show={this.props.partnerShow} onChange={this.props.onPartnerChange} />
+                <div className="footer-forms">
+                    {/*Add TeamForm and PartnerForm here, followed by "stay_tuned"*/}
+                    <button className="footer-forms-btn-left">
+                        <div>
+                            <img className="footer-forms-btn-left-bracket" src={bracket} alt="logo bracket" />
+                            <img className="footer-forms-btn-f1" src={f1} alt="join logo"/>
+                        </div>
+                        <div>
+                            <TeamForm show={this.props.teamShow} onChange={this.props.onTeamChange} />
+
+                        </div>
+                    </button>
+                    <button className="footer-forms-btn-right">
+                        <div>
+                            <img className="footer-forms-btn-right-bracket" src={bracket} alt="logo bracket" />
+                            <img className="footer-forms-btn-f2" src={f2} alt="partner logo" />
+                        </div>
+                        <div>
+                            <PartnerFrom show={this.props.partnerShow} onChange={this.props.onPartnerChange} />
+
+                        </div>
+                    </button>
+                </div>
 
                 {/*"stay_tuned" below*/}
-                <div className="stay_tuned">
+                <div className="footer-stay-tuned">
                     <div className="left">
                         <h2>Stay tuned</h2>
                         <div>Stay tuned for the latest news</div>
@@ -68,7 +91,7 @@ class Footer extends Component {
                     </div>
                 </div>
 
-                <footer>
+                <footer className="footer-copyright">
                     <p>&copy; 2018 Ankr All rights reserved</p>
                 </footer>
             </div>

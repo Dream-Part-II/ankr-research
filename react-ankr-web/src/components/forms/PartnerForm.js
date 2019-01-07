@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button, Modal } from "react-bootstrap";
+import bracket from "../../images/bracket.svg";
+import f2 from "../../images/f-2.svg";
+import '../../css/PartnerForm.css';
 
 
 class PartnerForm extends Component {
     render() {
         return (
             <div>
-                <Button onClick={this.props.onChange}><span className="fas fa-plus">BECOME A PARTNER</span></Button>
+                <Button onClick={this.props.onChange}>
+                    <div className="partner-form-logo">
+                        <img className="footer-forms-btn-right-bracket" src={bracket} alt="logo bracket" />
+                        <img className="footer-forms-btn-f2" src={f2} alt="partner logo" />
+                    </div>
+                    <div>
+                        <span className="fas fa-plus">BECOME A PARTNER</span>
+                        <div className="partner-form-desc">Expand your business with us</div>
+                    </div>
+
+                </Button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>
