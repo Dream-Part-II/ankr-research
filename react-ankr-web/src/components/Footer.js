@@ -11,11 +11,12 @@ class Footer extends Component {
             <div className="footer">
                 <div className="footer-forms">
                     {/*Add TeamForm and PartnerForm here, followed by "stay_tuned"*/}
-
-                    <TeamForm show={this.props.teamShow} onChange={this.props.onTeamChange} />
-
-
-                    <PartnerFrom show={this.props.partnerShow} onChange={this.props.onPartnerChange} />
+                    <div className="footer-team-form">
+                        <TeamForm show={this.props.teamShow} onChange={this.props.onTeamChange} />
+                    </div>
+                    <div className="footer-partner-form">
+                        <PartnerFrom show={this.props.partnerShow} onChange={this.props.onPartnerChange} />
+                    </div>
 
 
                 </div>

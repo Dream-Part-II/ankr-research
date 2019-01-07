@@ -9,17 +9,16 @@ class PartnerForm extends Component {
     render() {
         return (
             <div>
-                <Button onClick={this.props.onChange}>
+                <button className={this.props.navBar ? "partner-form-btn" : "footer-partner-form-btn"} onClick={this.props.onChange}>
                     <div className={this.props.navBar ? "partner-form-logo" : "footer-partner-form-logo"}>
                         <img className="footer-forms-btn-right-bracket" src={bracket} alt="logo bracket" />
                         <img className="footer-forms-btn-f2" src={f2} alt="partner logo" />
                     </div>
-                    <div>
-                        <span className="fas fa-plus">BECOME A PARTNER</span>
+                    <div className={this.props.navBar ? "partner-form-info" : "footer-partner-form-info"}>
+                        <div className="footer-partner-form-info-title"><strong>BECOME A PARTNER</strong></div>
                         <div className={this.props.navBar ? "partner-form-desc" : "footer-partner-form-desc"}>Expand your business with us</div>
                     </div>
-
-                </Button>
+                </button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>

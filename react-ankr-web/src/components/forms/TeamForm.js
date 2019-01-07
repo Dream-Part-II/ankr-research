@@ -11,16 +11,16 @@ class TeamForm extends Component {
     render() {
         return (
             <div className="teamForm">
-                <Button onClick={this.props.onChange}>
+                <button className={this.props.navBar ? "team-form-btn" : "footer-team-form-btn"} onClick={this.props.onChange}>
                     <div className={this.props.navBar ? "team-form-logo" : "footer-team-form-logo"}>
                         <img className="footer-forms-btn-left-bracket" src={bracket} alt="logo bracket" />
                         <img className="footer-forms-btn-f1" src={f1} alt="join logo"/>
                     </div>
-                    <div>
-                        <span className="fab fa-staylinked">JOIN OUR TEAM</span>
+                    <div className={this.props.navBar ? "team-form-info" : "footer-team-form-info"}>
+                        <div className="footer-team-form-info-title"><strong>JOIN OUR TEAM</strong></div>
                         <div className={this.props.navBar ? "team-form-desc" : "footer-team-form-desc"}>Build next-generation products with us</div>
                     </div>
-                </Button>
+                </button>
 
                 <Modal show={this.props.show}>
                     <Modal.Header>
