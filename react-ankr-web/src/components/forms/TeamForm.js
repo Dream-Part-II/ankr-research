@@ -73,6 +73,7 @@ class TeamForm extends Component {
                                     <FormControl
                                         type="text"
                                         placeholder="Your message"
+                                        bsSize="lg"
                                         className="team-form-middle-right-item-message"
                                     />
                                 </FormGroup>
