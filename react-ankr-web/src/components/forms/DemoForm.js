@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button, Modal } from "react-bootstrap";
+import '../../css/DemoForm.css';
 
 
 // var postmark = require("postmark");
@@ -75,48 +76,65 @@ class DemoForm extends Component {
             <div>
                 <button onClick={this.props.onChange}>REQUEST A DEMO</button>
 
-                <Modal show={this.props.show} onHide={this.props.onChange}>
+                <Modal
+                    show={this.props.show}
+                    onHide={this.props.onChange}
+                    dialogClassName="demo-form-modal"
+                >
                     <Modal.Header closeButton>
-                        <Modal.Title>Request demos</Modal.Title>
+                        <Modal.Title>
+                            <div className="demo-form-title">Request demos</div>
+                        </Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
-                        < form onSubmit = {
-                            this.handleSubmit
-                        } >
+                        < form
+                            onSubmit = {this.handleSubmit}
+                            className="demo-form-main"
+                        >
                             <label>Learn how you can leverage distributed computing network in your organization</label>
-                            <FormGroup>
-                                <FormControl
-                                    type="text"
-                                    placeholder="Your name"
 
-                                />
+                            <div className="demo-form-middle">
+                                <FormGroup className="demo-form-middle-left">
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Your name"
+                                        className="demo-form-middle-left-item"
+                                    />
 
-                                <FormControl
-                                    type="email"
-                                    placeholder="Your email address"
-                                />
+                                    <FormControl
+                                        type="email"
+                                        placeholder="Your email address"
+                                        className="demo-form-middle-left-item"
+                                    />
 
-                                <FormControl
-                                    type="text"
-                                    placeholder="Your phone number"
-                                />
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Your phone number"
+                                        className="demo-form-middle-left-item"
+                                    />
+                                </FormGroup>
 
-                                <FormControl
-                                    type="text"
-                                    placeholder="Your position"
-                                />
-                            </FormGroup>
-                            <FormGroup bsSize="large" onChange={
-                                this.handleChange
-                            }>
-                                <FormControl
-                                    type="text"
-                                    placeholder="Your message"
-                                />
-                            </FormGroup>
+                                <FormGroup
+                                    onChange={this.handleChange}
+                                    className="demo-form-middle-right"
+                                >
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Your position"
+                                        className="demo-form-middle-right-item"
+                                    />
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Your message"
+                                        className="demo-form-middle-right-item-message"
+                                    />
+                                </FormGroup>
+                            </div>
 
-                            <Button type="submit">Send Message</Button>
+                            <div className="demo-form-send-btn">
+                                <button  type="submit">Send Message</button>
+                            </div>
                         </form>
                     </Modal.Body>
                 </Modal>
