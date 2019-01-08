@@ -193,6 +193,10 @@
     margin-right: auto;
 }
 
+.footer-middle-email-addr span {
+    margin-right: 1em;
+}
+
 
 /*footer-copyright style*/
 .footer-copyright {
