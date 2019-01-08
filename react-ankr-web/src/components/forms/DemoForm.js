@@ -75,8 +75,8 @@ class DemoForm extends Component {
             <div>
                 <button onClick={this.props.onChange}>REQUEST A DEMO</button>
 
-                <Modal show={this.props.show}>
-                    <Modal.Header>
+                <Modal show={this.props.show} onHide={this.props.onChange}>
+                    <Modal.Header closeButton>
                         <Modal.Title>Request demos</Modal.Title>
                     </Modal.Header>
 
@@ -119,10 +119,6 @@ class DemoForm extends Component {
                             <Button type="submit">Send Message</Button>
                         </form>
                     </Modal.Body>
-
-                    <Modal.Footer>
-                        <Button onClick={this.props.onChange}>Close</Button>
-                    </Modal.Footer>
                 </Modal>
             </div>
         );
