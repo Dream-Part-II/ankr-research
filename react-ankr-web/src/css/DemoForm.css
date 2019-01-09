@@ -4,6 +4,23 @@
     height: auto;
 }
 
+.demo-form-close-btn {
+    width: 5%;
+    margin-left: 91.5%;
+    font-size: 2em;
+    border: none;
+    background-color: Transparent;
+}
+
+.demo-form-divider {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 3%;
+    width: 8%;
+    height: 3px;
+    background-image: linear-gradient(to right, #35acdc 0, #3d479a 100%);
+}
+
 /*Style demo form title & label*/
 .demo-form-title {
     font-size: 3em;
@@ -20,6 +37,7 @@
 .demo-form-main {
     display: flex;
     flex-direction: column;
+    background: #f2fbff;
 }
 
 /*Style input fields*/

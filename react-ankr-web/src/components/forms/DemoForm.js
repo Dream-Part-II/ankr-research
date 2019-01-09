@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button, Modal } from "react-bootstrap";
+import closeBtn from '../../images/modal-close-icon.png';
 import '../../css/DemoForm.css';
 
 
@@ -78,20 +79,19 @@ class DemoForm extends Component {
 
                 <Modal
                     show={this.props.show}
-                    onHide={this.props.onChange}
                     dialogClassName="demo-form-modal"
                 >
-                    <Modal.Header closeButton>
-                        <Modal.Title>
-                            <div className="demo-form-title">Request demos</div>
-                        </Modal.Title>
-                    </Modal.Header>
 
                     <Modal.Body>
                         < form
                             onSubmit = {this.handleSubmit}
                             className="demo-form-main"
                         >
+                            <button className="demo-form-close-btn" onClick={this.props.onChange}>
+                                <img src={closeBtn}/>
+                            </button>
+                            <div className="demo-form-title">Request demos</div>
+                            <div className="demo-form-divider"></div>
                             <label>Learn how you can leverage distributed computing network in your organization</label>
 
                             <div className="demo-form-middle">
@@ -135,6 +135,7 @@ class DemoForm extends Component {
                             <div className="demo-form-send-btn">
                                 <button  type="submit">Send Message</button>
                             </div>
+
                         </form>
                     </Modal.Body>
                 </Modal>
